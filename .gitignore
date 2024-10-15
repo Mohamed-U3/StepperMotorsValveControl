@@ -32,10 +32,15 @@
 *.app
 
 #Protues Backup Files
-*.workspace
+*.workspace 
+Proteus/Project Backups/
 
 # Compressed Files
 *.zip
 *.rar
+
+#MS word Files
+*.doc
+*.docx
 
 # non needed Folders
