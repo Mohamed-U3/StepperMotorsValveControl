@@ -57,10 +57,11 @@ static const unsigned char PROGMEM logo_bmp[] =
 
 void setupOled()
 {
-  // SSD1306_SWITCHCAPVCC = generate display voltage from 3.3V internally
-  if(!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
+  // SSD1306_SWITCHCAPVCC = generate display voltage from 3.3V internally or SSD1306_EXTERNALVCC
+  while(!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
     Serial.println(F("SSD1306 allocation failed"));
-    for(;;); // Don't proceed, loop forever
+    delay(100);
+//    for(;;); // Don't proceed, loop forever
   }
 
   // Show initial display buffer contents on the screen --

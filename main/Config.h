@@ -11,10 +11,10 @@
 #define STEPPER1_DIR_PIN    3
 #define STEPPER2_STEP_PIN   4
 #define STEPPER2_DIR_PIN    5
-#define BUTTON1_PIN         6
-#define BUTTON2_PIN         7
-#define BUTTON3_PIN         8
-#define BUTTON4_PIN         9
+#define DOWN_BUTTON_PIN     6
+#define LEFT_BUTTON_PIN     7
+#define RIGHT_BUTTON_PIN    8
+#define UP_BUTTON_PIN       9
 
 
 
