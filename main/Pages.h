@@ -140,7 +140,7 @@ void mainpage()
   display.setTextSize(1);               // Draw 2X-scale text
   display.setTextColor(SSD1306_WHITE);
   display.setCursor(0, 0);
-  display.print((current_line == 1) ? F("<   > ") : F("<     "));  display.print(F("main page     >")); display.println();
+  display.print((current_line == 1) ? F("|   > ") : F("|     "));  display.print(F("main page     >")); display.println();
   display.print((current_line == 2) ? F(">") : F(" ")); display.print(F("Line2: "));  display.println(current_line);
   display.print((current_line == 3) ? F(">") : F(" ")); display.print(F("Line3: "));  display.println(current_line);
   display.print((current_line == 4) ? F(">") : F(" ")); display.print(F("Line4: "));  display.println(current_line);
