@@ -47,12 +47,12 @@ void page1()
   display.setTextColor(SSD1306_WHITE);
   display.setCursor(0, 0);
   display.print((current_line == 1) ? F("<   > ") : F("<     "));  display.print(F("Settings      >")); display.println();
-  display.print((current_line == 2) ? F(">") : F(" ")); display.print(F("PrsrMinVolt: "));  display.println(PRESSURE_MIN_VOLT1);
-  display.print((current_line == 3) ? F(">") : F(" ")); display.print(F("Line3: "));  display.println(current_line);
-  display.print((current_line == 4) ? F(">") : F(" ")); display.print(F("Line4: "));  display.println(current_line);
-  display.print((current_line == 5) ? F(">") : F(" ")); display.print(F("Line5: "));  display.println(current_line);
-  display.print((current_line == 6) ? F(">") : F(" ")); display.print(F("Line6: "));  display.println(current_line);
-  display.print((current_line == 7) ? F(">") : F(" ")); display.print(F("Line7: "));  display.println(current_line);
+  display.print((current_line == 2) ? F(">") : F(" ")); display.print(F("PrsrMinVolt1: "));  display.println(PRESSURE_MIN_VOLT1);
+  display.print((current_line == 3) ? F(">") : F(" ")); display.print(F("PrsrMaxVolt1: "));  display.println(PRESSURE_MAX_VOLT1);
+  display.print((current_line == 4) ? F(">") : F(" ")); display.print(F("PrsrMinVolt2: "));  display.println(PRESSURE_MIN_VOLT2);
+  display.print((current_line == 5) ? F(">") : F(" ")); display.print(F("PrsrMaxVolt2: "));  display.println(PRESSURE_MAX_VOLT2);
+  display.print((current_line == 6) ? F(">") : F(" ")); display.print(F("MaxPressVal1: "));  display.println(MAX_PRESSURE_VALUE1);
+  display.print((current_line == 7) ? F(">") : F(" ")); display.print(F("MaxPressVal2: "));  display.println(MAX_PRESSURE_VALUE2);
   display.print((current_line == 8) ? F(">") : F(" ")); display.print(F("Line8: "));  display.println(current_line);
 
   display.display();                    // Show initial text
@@ -62,11 +62,14 @@ void page1()
     case 1: if (increaseVal == 1){ current_page++; increaseVal = 0;} if (decreaseVal == 1){ current_page--; decreaseVal = 0;}   break;
     case 2: if (increaseVal == 1){ PRESSURE_MIN_VOLT1 = PRESSURE_MIN_VOLT1 + 0.1; increaseVal = 0;}
             if (decreaseVal == 1){ PRESSURE_MIN_VOLT1 = PRESSURE_MIN_VOLT1 - 0.1; decreaseVal = 0;}   break;
-    case 3: if (increaseVal == 1){ current_page++; increaseVal = 0;} if (decreaseVal == 1){ current_page--; decreaseVal = 0;}   break;
-    case 4: if (increaseVal == 1){ current_page++; increaseVal = 0;} if (decreaseVal == 1){ current_page--; decreaseVal = 0;}   break;
-    case 5: if (increaseVal == 1){ current_page++; increaseVal = 0;} if (decreaseVal == 1){ current_page--; decreaseVal = 0;}   break;
-    case 6: if (increaseVal == 1){ current_page++; increaseVal = 0;} if (decreaseVal == 1){ current_page--; decreaseVal = 0;}   break;
-    case 7: if (increaseVal == 1){ current_page++; increaseVal = 0;} if (decreaseVal == 1){ current_page--; decreaseVal = 0;}   break;
+    case 3: if (increaseVal == 1){ PRESSURE_MAX_VOLT1 = PRESSURE_MAX_VOLT1 + 0.1; increaseVal = 0;}
+            if (decreaseVal == 1){ PRESSURE_MAX_VOLT1 = PRESSURE_MAX_VOLT1 - 0.1; decreaseVal = 0;}   break;
+    case 4: if (increaseVal == 1){ PRESSURE_MIN_VOLT2 = PRESSURE_MIN_VOLT2 + 0.1; increaseVal = 0;}
+            if (decreaseVal == 1){ PRESSURE_MIN_VOLT2 = PRESSURE_MIN_VOLT2 - 0.1; decreaseVal = 0;}   break;
+    case 5: if (increaseVal == 1){ PRESSURE_MAX_VOLT2 = PRESSURE_MAX_VOLT2 + 0.1; increaseVal = 0;}
+            if (decreaseVal == 1){ PRESSURE_MAX_VOLT2 = PRESSURE_MAX_VOLT2 - 0.1; decreaseVal = 0;}   break;
+    case 6: if (increaseVal == 1){ MAX_PRESSURE_VALUE1++; increaseVal = 0;} if (decreaseVal == 1){ MAX_PRESSURE_VALUE1--; decreaseVal = 0;}   break;
+    case 7: if (increaseVal == 1){ MAX_PRESSURE_VALUE2++; increaseVal = 0;} if (decreaseVal == 1){ MAX_PRESSURE_VALUE2--; decreaseVal = 0;}   break;
     case 8: if (increaseVal == 1){ current_page++; increaseVal = 0;} if (decreaseVal == 1){ current_page--; decreaseVal = 0;}   break;
     default: ;
   }
@@ -141,8 +144,8 @@ void mainpage()
   display.setTextColor(SSD1306_WHITE);
   display.setCursor(0, 0);
   display.print((current_line == 1) ? F("|   > ") : F("|     "));  display.print(F("main page     >")); display.println();
-  display.print((current_line == 2) ? F(">") : F(" ")); display.print(F("Line2: "));  display.println(current_line);
-  display.print((current_line == 3) ? F(">") : F(" ")); display.print(F("Line3: "));  display.println(current_line);
+  display.print((current_line == 2) ? F(">") : F(" ")); display.print(F("Pressure 1: "));  display.println(PRESSURE_SENSOR_READING1);
+  display.print((current_line == 3) ? F(">") : F(" ")); display.print(F("Pressure 2: "));  display.println(PRESSURE_SENSOR_READING2);
   display.print((current_line == 4) ? F(">") : F(" ")); display.print(F("Line4: "));  display.println(current_line);
   display.print((current_line == 5) ? F(">") : F(" ")); display.print(F("Line5: "));  display.println(current_line);
   display.print((current_line == 6) ? F(">") : F(" ")); display.print(F("Line6: "));  display.println(current_line);
@@ -165,6 +168,7 @@ void mainpage()
   }
 }
 
+//Task of Loading Pages on OLED.
 void loopPages()
 {
   switch (pressedButton())
