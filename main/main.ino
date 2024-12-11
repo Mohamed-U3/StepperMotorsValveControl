@@ -10,11 +10,11 @@
 void setup()
 {
   Serial.begin(9600);
-  Thermister_init();
   setupStepper();
   setupPressure();
   setupOled();
   setupbuttons();
+  Thermister_init();
 }
 
 void loop()
@@ -22,4 +22,5 @@ void loop()
 //  loopStepper();
   loopPressure();
   loopPages();
+  Thermister_loop();
 }

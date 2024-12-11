@@ -27,3 +27,6 @@ float global_pressure_min_volt2;    //voltage when the reading is 0 PSI
 float global_pressure_max_volt2;    //voltage when the reading is maximum PSI
 float global_max_pressure_value1;   //the value of the maximum pressure that sensor can read
 float global_max_pressure_value2;   //the value of the maximum pressure that sensor can read
+
+float global_temperature_reading1;  //reading of the sensor in °C unit.
+float global_temperature_reading2;  //reading of the sensor in °C unit.

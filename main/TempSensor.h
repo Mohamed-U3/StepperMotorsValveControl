@@ -4,11 +4,15 @@
 #include<math.h>
 
 #include "EEPROMLibrary.h"
+#include "Config.h"
+#include "Global.h"
 
 #define Thermister_1_pin      TEMP1_PIN
 #define Thermister_2_pin      TEMP2_PIN
 #define NUM_READINGS 10      // Number of readings to average
 #define READ_INTERVAL 1     // Reading interval in milliseconds 
+#define TEMPERATURE_SENSOR_READING1    global_temperature_reading1      //The readings of the sensor is written in this global variable.
+#define TEMPERATURE_SENSOR_READING2    global_temperature_reading2      //The readings of the sensor is written in this global variable.
 
 unsigned long lastReadTime1 = 0;   // Variable to store the last reading time
 double tempStack1[NUM_READINGS];   // Array to store the last 10 temperature values
@@ -62,7 +66,7 @@ void Thermister_init()
 //*
 double Thermister1()
 {
-  static double averageTemp = 22.0;
+  static double averageTemp = 20.0;
   // Check if the specified interval has passed since the last reading
   if (millis() - lastReadTime1 >= READ_INTERVAL)
   {
@@ -81,7 +85,7 @@ double Thermister1()
     lastReadTime1 = millis();  // Update the last reading time
 
     // Increment a counter to keep track of the number of readings
-    static int readingsCount = 0;
+    static char readingsCount = 0;
     readingsCount++;
 
     // Check if the specified number of readings has been reached
@@ -146,6 +150,15 @@ double Thermister2()
     }
   }
   return (averageTemp + sensorOffset2);
+}
+
+void Thermister_loop()
+{
+//  Thermister1();
+//  Thermister2();
+
+  TEMPERATURE_SENSOR_READING1 = Thermister1();
+  TEMPERATURE_SENSOR_READING2 = Thermister2();
 }
 
 /*
