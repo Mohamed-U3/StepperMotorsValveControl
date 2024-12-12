@@ -14,7 +14,6 @@ void setup()
   setupPressure();
   setupOled();
   setupbuttons();
-  Thermister_init();
 }
 
 void loop()
@@ -22,5 +21,5 @@ void loop()
 //  loopStepper();
   loopPressure();
   loopPages();
-  Thermister_loop();
+  NTC_loop();
 }

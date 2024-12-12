@@ -1,299 +1,87 @@
 #ifndef TEMPSENSOR_H
 #define TEMPSENSOR_H
 
-#include<math.h>
-
 #include "EEPROMLibrary.h"
 #include "Config.h"
 #include "Global.h"
 
-#define Thermister_1_pin      TEMP1_PIN
-#define Thermister_2_pin      TEMP2_PIN
-#define NUM_READINGS 10      // Number of readings to average
-#define READ_INTERVAL 1     // Reading interval in milliseconds 
-#define TEMPERATURE_SENSOR_READING1    global_temperature_reading1      //The readings of the sensor is written in this global variable.
-#define TEMPERATURE_SENSOR_READING2    global_temperature_reading2      //The readings of the sensor is written in this global variable.
+#define Thermister_1_pin                TEMP1_PIN                       //Pin of NTC 1 (TEMP1_PIN what is in "Config.h" configuration file)
+#define Thermister_2_pin                TEMP2_PIN                       //Pin of NTC 2 (TEMP1_PIN what is in "Config.h" configuration file)
+#define TEMPERATURE_SENSOR_READING1     global_temperature_reading1     //The readings of the sensor is written in this global variable.
+#define TEMPERATURE_SENSOR_READING2     global_temperature_reading2     //The readings of the sensor is written in this global variable.
 
-unsigned long lastReadTime1 = 0;   // Variable to store the last reading time
-double tempStack1[NUM_READINGS];   // Array to store the last 10 temperature values
-int stackIndex1 = 0;               // Index to keep track of the current position in the stack
-unsigned long lastReadTime2 = 0;   // Variable to store the last reading time
-double tempStack2[NUM_READINGS];   // Array to store the last 10 temperature values
-int stackIndex2 = 0;               // Index to keep track of the current position in the stack
-
-unsigned long lastReadTime3 = 0;   // Variable to store the last reading time
-
-float SetPoint      = 22.00;
-float SetPointDiff  = 2.00;
-signed char sensorOffset1 = 0;
-signed char sensorOffset2 = 0;
-extern String Temp_Alarm_reason1 = "Empty";
-extern String Temp_Alarm_reason2 = "Empty";
-
-//Decliration of Variables in other file.
-extern unsigned long Com_1_OperationDelay;
-extern unsigned long Com_2_OperationDelay;
-
-
-void Thermister_init()
+class NTCThermistor
 {
-//  SetPoint      = 20.00;
-//  EEPROM.put(0, SetPoint);
-  pinMode(Thermister_1_pin,INPUT);
-  pinMode(Thermister_2_pin,INPUT);
-//  String Readings = readStringFromEEPROM(FirstTime_ADDRESS);
-//
-//  if(Readings != "The First Time")
-//  {
-//    writeStringToEEPROM(FirstTime_ADDRESS, "The First Time");
-//
-//    EEPROM.put(float_SetPoint_ADDRESS, 12.00);
-//    EEPROM.put(float_SetPointDiff_ADDRESS, 2.00);
-//    EEPROM.put(signed_char_sensorOffset1_ADDRESS, 0);
-//    EEPROM.put(signed_char_sensorOffset2_ADDRESS, 0);
-//    EEPROM.put(unsigned_long_Com_1_OperationDelay_ADDRESS, 150UL);
-//    EEPROM.put(unsigned_long_Com_2_OperationDelay_ADDRESS, 250UL);
-//  }
-//  EEPROM.get(float_SetPoint_ADDRESS, SetPoint);
-//  EEPROM.get(float_SetPointDiff_ADDRESS, SetPointDiff);
-//  EEPROM.get(signed_char_sensorOffset1_ADDRESS, sensorOffset1);
-//  EEPROM.get(signed_char_sensorOffset2_ADDRESS, sensorOffset2);
-//  EEPROM.get(unsigned_long_Com_1_OperationDelay_ADDRESS, Com_1_OperationDelay);
-//  EEPROM.get(unsigned_long_Com_2_OperationDelay_ADDRESS, Com_2_OperationDelay);
-}
+  private:
+    // Pin where the thermistor is connected
+    int _pin;
 
-//New Functions that gets the avg temperature.
-//*
-double Thermister1()
-{
-  static double averageTemp = 20.0;
-  // Check if the specified interval has passed since the last reading
-  if (millis() - lastReadTime1 >= READ_INTERVAL)
-  {
-    // Read the analog value from the thermistor
-    int rawValue = analogRead(Thermister_1_pin);
+    // Thermistor characteristics
+    const float NOMINAL_RESISTANCE = 10000.0;  // 10k ohm at 25°C
+    const float NOMINAL_TEMPERATURE = 25.0;    // Reference temperature
 
-    // Convert the analog value to temperature
-    double temp = log(10000.0 * ((1024.0 / rawValue) - 1));
-    temp = 1 / (0.001129148 + (0.000234125 + (0.0000000876741 * temp * temp)) * temp);
-    temp = temp - 273.15;
+    // Steinhart-Hart coefficients (typical for 10k NTC)
+    const float BETA_COEFFICIENT = 3950.0;
 
-    // Push the new temperature value onto the stack
-    tempStack1[stackIndex1] = temp;
-    stackIndex1 = (stackIndex1 + 1) % NUM_READINGS;
+    // Voltage divider fixed resistor value
+    const float SERIES_RESISTOR = 10000.0;  // 10k ohm series resistor
 
-    lastReadTime1 = millis();  // Update the last reading time
-
-    // Increment a counter to keep track of the number of readings
-    static char readingsCount = 0;
-    readingsCount++;
-
-    // Check if the specified number of readings has been reached
-    if (readingsCount == NUM_READINGS)
+  public:
+    // Constructor
+    NTCThermistor(int pin) : _pin(pin)
     {
-      // Calculate the average temperature
-      averageTemp = 0.0;
-      for (int i = 0; i < NUM_READINGS; i++)
-      {
-        averageTemp += tempStack1[i];
-      }
-      averageTemp /= NUM_READINGS;
-
-      // Reset variables for the next set of readings
-      readingsCount = 0;
-
-      return (averageTemp + sensorOffset1);
+      // Set the analog pin to input mode
+      pinMode(_pin, INPUT);
     }
-  }
-  return (averageTemp + sensorOffset1);
-}
 
-double Thermister2()
-{
-  static double averageTemp = 20.0;
-  // Check if the specified interval has passed since the last reading
-  if (millis() - lastReadTime2 >= READ_INTERVAL)
-  {
-    // Read the analog value from the thermistor
-    int rawValue = analogRead(Thermister_2_pin);
-
-    // Convert the analog value to temperature
-    double temp = log(10000.0 * ((1024.0 / rawValue) - 1));
-    temp = 1 / (0.001129148 + (0.000234125 + (0.0000000876741 * temp * temp)) * temp);
-    temp = temp - 273.15;
-
-    // Push the new temperature value onto the stack
-    tempStack2[stackIndex2] = temp;
-    stackIndex2 = (stackIndex2 + 1) % NUM_READINGS;
-
-    lastReadTime2 = millis();  // Update the last reading time
-
-    // Increment a counter to keep track of the number of readings
-    static int readingsCount = 0;
-    readingsCount++;
-
-    // Check if the specified number of readings has been reached
-    if (readingsCount == NUM_READINGS)
+    // Read raw analog value
+    int readRawValue()
     {
-      // Calculate the average temperature
-      averageTemp = 0.0;
-      for (int i = 0; i < NUM_READINGS; i++)
-      {
-        averageTemp += tempStack2[i];
-      }
-      averageTemp /= NUM_READINGS;
-
-      // Reset variables for the next set of readings
-      readingsCount = 0;
-
-      return (averageTemp + sensorOffset2);
+      return analogRead(_pin);
     }
-  }
-  return (averageTemp + sensorOffset2);
-}
 
-void Thermister_loop()
-{
-//  Thermister1();
-//  Thermister2();
-
-  TEMPERATURE_SENSOR_READING1 = Thermister1();
-  TEMPERATURE_SENSOR_READING2 = Thermister2();
-}
-
-/*
-void IncreaseTemp(unsigned int * page_num)
-{
-  if(*page_num == 1)
-  {
-    SetPoint++;
-    if(SetPoint>30) SetPoint=30;
-    EEPROM.put(float_SetPoint_ADDRESS, SetPoint);
-  }
-  else if(*page_num == 2)
-  {
-    SetPointDiff++;
-    if(SetPointDiff>10) SetPointDiff=10;
-    EEPROM.put(float_SetPointDiff_ADDRESS, SetPointDiff);
-  }
-}
-
-void IncreaseOffset(unsigned int * page_num)
-{
-  if(*page_num == 1)
-  {
-    sensorOffset1++;
-    EEPROM.put(signed_char_sensorOffset1_ADDRESS, sensorOffset1);
-  }
-  else if(*page_num == 2)
-  {
-    sensorOffset2++;
-    EEPROM.put(signed_char_sensorOffset2_ADDRESS, sensorOffset2);
-  }
-  else if(*page_num == 3)
-  {
-    Com_1_OperationDelay += 10;
-    if(Com_1_OperationDelay>450) Com_1_OperationDelay=450;
-    EEPROM.put(unsigned_long_Com_1_OperationDelay_ADDRESS, Com_1_OperationDelay);
-  }
-  else if(*page_num == 4)
-  {
-    Com_2_OperationDelay += 10;
-    if(Com_2_OperationDelay>450) Com_2_OperationDelay=450;
-    EEPROM.put(unsigned_long_Com_2_OperationDelay_ADDRESS, Com_2_OperationDelay);
-  }
-}
-
-void DecreaseTemp(unsigned int * page_num)
-{
-  if(*page_num == 1)
-  {
-    SetPoint--;
-    if(SetPoint<6) SetPoint=6;
-    EEPROM.put(float_SetPoint_ADDRESS, SetPoint);
-  }
-  else if(*page_num == 2)
-  {
-    SetPointDiff--;
-    if(SetPointDiff<1) SetPointDiff=1;
-    EEPROM.put(float_SetPointDiff_ADDRESS, SetPointDiff);
-  }
-}
-
-void DecreaseOffset(unsigned int * page_num)
-{
-  if(*page_num == 1)
-  {
-    sensorOffset1--;
-    EEPROM.put(signed_char_sensorOffset1_ADDRESS, sensorOffset1);
-  }
-  else if(*page_num == 2)
-  {
-    sensorOffset2--;
-    EEPROM.put(signed_char_sensorOffset2_ADDRESS, sensorOffset2);
-  }
-  else if(*page_num == 3)
-  {
-    Com_1_OperationDelay -= 10;
-    if(Com_1_OperationDelay<150) Com_1_OperationDelay=150;
-    EEPROM.put(unsigned_long_Com_1_OperationDelay_ADDRESS, Com_1_OperationDelay);
-  }
-  else if(*page_num == 4)
-  {
-    Com_2_OperationDelay -= 10;
-    if(Com_2_OperationDelay<150) Com_2_OperationDelay=150;
-    EEPROM.put(unsigned_long_Com_2_OperationDelay_ADDRESS, Com_2_OperationDelay);
-  }
-}
-
-void check_Input_Output_temp_def(char Alarm)
-{
-  //First Alarm Starts Here.
-  static bool arr[6] = {false,false,false,false,false,false};
-  if(Thermister1() <= Thermister2() && Alarm == 1) //if the Temprature that enter the system is colder then the temprature that gets out that means something is wrong.
-  {
-    static char counter = 0;
-    if(counter == 0){arr[counter] = true; lastReadTime3 = millis(); counter++;}
-    if(millis() - lastReadTime3 >= (2UL*60*1000)) //every 2 minutes
+    // Convert analog reading to voltage
+    float readVoltage()
     {
-      switch (counter)
-      {
-        case 1: arr[counter] = true; counter++; break;
-        case 2: arr[counter] = true; counter++; break;
-        case 3: arr[counter] = true; counter++; break;
-        case 4: arr[counter] = true; counter++; break;
-        case 5: arr[counter] = true; counter=0; break;
-        default: counter = 0;
-      }
-
-      lastReadTime3 = millis();
+      return readRawValue() * (5.0 / 1023.0);
     }
-  }
-  if(arr[0] == true && arr[1] == true && arr[2] == true && arr[3] == true && arr[4] == true && arr[5] == true)
-  {
-    temperature_difference_Alarm = HIGH;
-    Temp_Alarm_reason1 = "reverse flow or     ";
-    Temp_Alarm_reason2 = " sensor failure     ";
-    for(char i = 0; i<6; i++) arr[i] = false;
-  }
-  //First Alarm Ends Here.
 
-  //Second Alarm starts Here.
-  if((Thermister1() < 4 || Thermister2() < 4) && Alarm == 2)
-  {
-    temperature_difference_Alarm = HIGH;
-    Temp_Alarm_reason1 = "Low temp or sensor  ";
-    Temp_Alarm_reason2 = " failure            ";
-  }
-  //Second Alarm Ends Here.
-  if (temperature_difference_Alarm == LOW)
-  {
-    Temp_Alarm_reason1 = "                    ";
-    Temp_Alarm_reason2 = "                    ";
-    //temperature_difference_Alarm = LOW;
-  }
+    // Calculate resistance of the thermistor
+    float calculateResistance()
+    {
+      float voltage = readVoltage();
+      float resistance = SERIES_RESISTOR / ((5.0 / voltage) - 1.0);
+      return resistance;
+    }
+
+    // Convert temperature using Steinhart-Hart equation
+    float getTemperatureCelsius()
+    {
+      float resistance = calculateResistance();
+
+      // Steinhart-Hart equation
+      float steinhart;
+      steinhart = log(resistance / NOMINAL_RESISTANCE) / BETA_COEFFICIENT;     // 1/B * ln(R/Ro)
+      steinhart += 1.0 / (NOMINAL_TEMPERATURE + 273.15);                       // + (1/To)
+      steinhart = 1.0 / steinhart;                                             // Invert
+      steinhart -= 273.15;                                                     // Convert to Celsius
+
+      return steinhart;
+    }
+
+    // Convert to Fahrenheit
+    float getTemperatureFahrenheit()
+    {
+      return (getTemperatureCelsius() * 9.0 / 5.0) + 32.0;
+    }
+};
+NTCThermistor NTC1(Thermister_1_pin);
+NTCThermistor NTC2(Thermister_2_pin);
+
+void NTC_loop()
+{
+  TEMPERATURE_SENSOR_READING1 = NTC1.getTemperatureCelsius();
+  TEMPERATURE_SENSOR_READING2 = NTC2.getTemperatureCelsius();
 }
-
-*/
 
 #endif  //TEMPSENSOR_H
