@@ -1,0 +1,38 @@
+\chapter{Stepper Motors Valve Control System}
+\hypertarget{index}{}\label{index}\index{Stepper Motors Valve Control System@{Stepper Motors Valve Control System}}
+\label{index_md__r_e_a_d_m_e}%
+\Hypertarget{index_md__r_e_a_d_m_e}%
+\hypertarget{index_description}{}\doxysection{\texorpdfstring{Description\+:}{Description\+:}}\label{index_description}
+\hypertarget{index_the-arduino-code-are-in-main-folder}{}\doxysubsubsection{\texorpdfstring{The Arduino code are in {\bfseries{main}} folder.}{The Arduino code are in {\bfseries{main}} folder.}}\label{index_the-arduino-code-are-in-main-folder}
+\hypertarget{index_components}{}\doxysection{\texorpdfstring{Components\+:}{Components\+:}}\label{index_components}
+\hypertarget{index_using-1-arduino-nano-2-stepper-motors-1-oled-screen-4-push-buttons-2-pressure-sensors-and-2-temperature-sensors}{}\doxysubsection{\texorpdfstring{Using 1 Arduino Nano, 2 stepper motors, 1 OLED screen, 4 push buttons, 2 pressure sensors, and 2 temperature sensors.}{Using 1 Arduino Nano, 2 stepper motors, 1 OLED screen, 4 push buttons, 2 pressure sensors, and 2 temperature sensors.}}\label{index_using-1-arduino-nano-2-stepper-motors-1-oled-screen-4-push-buttons-2-pressure-sensors-and-2-temperature-sensors}
+ 
+\begin{DoxyImage}
+\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{Proteus.jpg}
+\doxyfigcaption{Circuit}
+\end{DoxyImage}
+   
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Pins to Arduino   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Pins to Arduino   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-2}
+\endhead
+VCC -\/\texorpdfstring{$>$}{>} 5v   &5 volts For powering the components.    \\\cline{1-2}
+GND -\/\texorpdfstring{$>$}{>} GND   &Ground for all the components.    \\\cline{1-2}
+SDA -\/\texorpdfstring{$>$}{>} A4   &Serial Data pin for I2C communication between OLED display SSD1306 and Arduino Nano    \\\cline{1-2}
+SCL -\/\texorpdfstring{$>$}{>} A5   &Serial Clock pin for I2C communication between OLED display SSD1306 and Arduino Nano    \\\cline{1-2}
+STEP1 -\/ \texorpdfstring{$>$}{>} 2   &Steps pin for stepper motor driver    \\\cline{1-2}
+DIR1 -\/\texorpdfstring{$>$}{>} 3   &Direction pin for stepper motor driver    \\\cline{1-2}
+STEP2 -\/ \texorpdfstring{$>$}{>} 4   &Steps pin for stepper motor driver    \\\cline{1-2}
+DIR2 -\/\texorpdfstring{$>$}{>} 5   &Direction pin for stepper motor driver    \\\cline{1-2}
+Push Button -\/\texorpdfstring{$>$}{>} 6 to 9   &Push button for Control.    \\\cline{1-2}
+T1,T2 -\/\texorpdfstring{$>$}{>} A0, A1   &Temperature Sensors connection.    \\\cline{1-2}
+P1,P2 -\/\texorpdfstring{$>$}{>} A2, A3   &Pressure Sensors connection.    \\\cline{1-2}
+Switches -\/\texorpdfstring{$>$}{>} 10,11   &Switches for controlling the modes for each stepper motor.   \\\cline{1-2}
+\end{longtabu}

@@ -1,0 +1,84 @@
+\doxysection{main/\+Pressure\+Sensor.h File Reference}
+\hypertarget{_pressure_sensor_8h}{}\label{_pressure_sensor_8h}\index{main/PressureSensor.h@{main/PressureSensor.h}}
+
+
+\+: Functionality and code of pressure sensors  
+
+
+{\ttfamily \#include "{}Config.\+h"{}}\newline
+{\ttfamily \#include "{}Global.\+h"{}}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_pressure_sensor_8h_a75d9de9dbaf6fefa4d24872543e6d420}\label{_pressure_sensor_8h_a75d9de9dbaf6fefa4d24872543e6d420} 
+\#define {\bfseries PRESSURE\+\_\+\+SENSOR\+\_\+\+READING1}~global\+\_\+pressure\+\_\+reading1
+\item 
+\Hypertarget{_pressure_sensor_8h_a8306f562c8ed852bfcd48d4f2652497f}\label{_pressure_sensor_8h_a8306f562c8ed852bfcd48d4f2652497f} 
+\#define {\bfseries PRESSURE\+\_\+\+SENSOR\+\_\+\+READING2}~global\+\_\+pressure\+\_\+reading2
+\item 
+\Hypertarget{_pressure_sensor_8h_a149a6494969ce71366c20749ed90a3a0}\label{_pressure_sensor_8h_a149a6494969ce71366c20749ed90a3a0} 
+\#define {\bfseries PRESSURE\+\_\+\+MIN\+\_\+\+VOLT1}~global\+\_\+pressure\+\_\+min\+\_\+volt1
+\item 
+\Hypertarget{_pressure_sensor_8h_a35ba19cdbedc95773da95e20479ada3f}\label{_pressure_sensor_8h_a35ba19cdbedc95773da95e20479ada3f} 
+\#define {\bfseries PRESSURE\+\_\+\+MAX\+\_\+\+VOLT1}~global\+\_\+pressure\+\_\+max\+\_\+volt1
+\item 
+\Hypertarget{_pressure_sensor_8h_adc9324ae1079f9e4f657693d039da5c2}\label{_pressure_sensor_8h_adc9324ae1079f9e4f657693d039da5c2} 
+\#define {\bfseries PRESSURE\+\_\+\+MIN\+\_\+\+VOLT2}~global\+\_\+pressure\+\_\+min\+\_\+volt2
+\item 
+\Hypertarget{_pressure_sensor_8h_ad17b54aa3e34c378d67b84a8544aac2d}\label{_pressure_sensor_8h_ad17b54aa3e34c378d67b84a8544aac2d} 
+\#define {\bfseries PRESSURE\+\_\+\+MAX\+\_\+\+VOLT2}~global\+\_\+pressure\+\_\+max\+\_\+volt2
+\item 
+\Hypertarget{_pressure_sensor_8h_a250513d26684d74d5b3bdd439ba4bd13}\label{_pressure_sensor_8h_a250513d26684d74d5b3bdd439ba4bd13} 
+\#define {\bfseries MAX\+\_\+\+PRESSURE\+\_\+\+VALUE1}~global\+\_\+max\+\_\+pressure\+\_\+value1
+\item 
+\Hypertarget{_pressure_sensor_8h_a08d9e209e3c3112b49b3dca8b984c54b}\label{_pressure_sensor_8h_a08d9e209e3c3112b49b3dca8b984c54b} 
+\#define {\bfseries MAX\+\_\+\+PRESSURE\+\_\+\+VALUE2}~global\+\_\+max\+\_\+pressure\+\_\+value2
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_pressure_sensor_8h_a94a2b38038219e3f1ea13fd7c8e4052f}\label{_pressure_sensor_8h_a94a2b38038219e3f1ea13fd7c8e4052f} 
+void {\bfseries setup\+Pressure} ()
+\item 
+\Hypertarget{_pressure_sensor_8h_a72bb53e6a013577f27500a32a2ac6add}\label{_pressure_sensor_8h_a72bb53e6a013577f27500a32a2ac6add} 
+void {\bfseries loop\+Pressure} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_pressure_sensor_8h_acf07e5926b5ad59a59c85d6f44b44106}\label{_pressure_sensor_8h_acf07e5926b5ad59a59c85d6f44b44106} 
+int {\bfseries pressure1\+Zero} = 102.\+4
+\item 
+\Hypertarget{_pressure_sensor_8h_ad1a49e4dbe54338289abcfa1a21c1275}\label{_pressure_sensor_8h_ad1a49e4dbe54338289abcfa1a21c1275} 
+int {\bfseries pressure1\+Max} = 921.\+6
+\item 
+\Hypertarget{_pressure_sensor_8h_ae300e615df0e13ec2052dd6b4eba677c}\label{_pressure_sensor_8h_ae300e615df0e13ec2052dd6b4eba677c} 
+int {\bfseries pressure1transducermax\+PSI} = 100
+\item 
+\Hypertarget{_pressure_sensor_8h_a274be72525eda1bb14f4fdbb019894e1}\label{_pressure_sensor_8h_a274be72525eda1bb14f4fdbb019894e1} 
+int {\bfseries pressure2\+Zero} = 102.\+4
+\item 
+\Hypertarget{_pressure_sensor_8h_a7c1a5a22573b26645f316a31cadfe157}\label{_pressure_sensor_8h_a7c1a5a22573b26645f316a31cadfe157} 
+int {\bfseries pressure2\+Max} = 921.\+6
+\item 
+\Hypertarget{_pressure_sensor_8h_a2933d492e8cc30989dbf863123c86f94}\label{_pressure_sensor_8h_a2933d492e8cc30989dbf863123c86f94} 
+int {\bfseries pressure2transducermax\+PSI} = 100
+\item 
+\Hypertarget{_pressure_sensor_8h_a20baacae6da71964c90a6d3c0e5e4d6f}\label{_pressure_sensor_8h_a20baacae6da71964c90a6d3c0e5e4d6f} 
+float {\bfseries pressure\+Value} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\+: Functionality and code of pressure sensors 
+
+\DoxyHorRuler{0}
+
+
+\begin{DoxyAuthor}{Author}
+\+: Eng. Mohamed Yousry 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+\+: 22/12/2024 \DoxyHorRuler{0}
+ 
+\end{DoxyDate}

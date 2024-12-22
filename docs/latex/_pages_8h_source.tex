@@ -1,0 +1,322 @@
+\doxysection{Pages.\+h}
+\hypertarget{_pages_8h_source}{}\label{_pages_8h_source}\index{main/Pages.h@{main/Pages.h}}
+\mbox{\hyperlink{_pages_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#ifndef\ PAGES\_H}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ PAGES\_H}}
+\DoxyCodeLine{00011\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ ***********************************************************}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Includes}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ ***********************************************************}}
+\DoxyCodeLine{00015\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_config_8h}{Config.h}}"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_global_8h}{Global.h}}"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_buttons_8h}{Buttons.h}}"{}}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_oled_8h}{Oled.h}}"{}}}
+\DoxyCodeLine{00020\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ *\ ***********************************************************}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ variables}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ *\ ***********************************************************}}
+\DoxyCodeLine{00024\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00025\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ current\_page\ \ \ \ \ \ =\ 1;}
+\DoxyCodeLine{00026\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ current\_line\ \ \ \ \ \ =\ 1;}
+\DoxyCodeLine{00027\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ button\_last\_state\ =\ 0;}
+\DoxyCodeLine{00028\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ increaseVal\ \ \ \ \ \ \ =\ 0;}
+\DoxyCodeLine{00029\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ decreaseVal\ \ \ \ \ \ \ =\ 0;}
+\DoxyCodeLine{00030\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00031\ \textcolor{comment}{*\ ***********************************************************}}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ Defines}}
+\DoxyCodeLine{00033\ \textcolor{comment}{*\ ***********************************************************}}
+\DoxyCodeLine{00034\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ PRESSURE\_SENSOR\_READING1\ \ \ \ \ \ \ \ global\_pressure\_reading1\ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//The\ readings\ of\ the\ sensor\ is\ written\ in\ this\ global\ variable.}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ PRESSURE\_SENSOR\_READING2\ \ \ \ \ \ \ \ global\_pressure\_reading2\ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//The\ readings\ of\ the\ sensor\ is\ written\ in\ this\ global\ variable.}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ PRESSURE\_MIN\_VOLT1\ \ \ \ \ \ \ \ \ \ \ \ \ \ global\_pressure\_min\_volt1\ \ \ \ \ \ \ \ \ }\textcolor{comment}{//voltage\ when\ the\ reading\ is\ 0\ PSI}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ PRESSURE\_MAX\_VOLT1\ \ \ \ \ \ \ \ \ \ \ \ \ \ global\_pressure\_max\_volt1\ \ \ \ \ \ \ \ \ }\textcolor{comment}{//voltage\ when\ the\ reading\ is\ maximum\ PSI}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ PRESSURE\_MIN\_VOLT2\ \ \ \ \ \ \ \ \ \ \ \ \ \ global\_pressure\_min\_volt2\ \ \ \ \ \ \ \ \ }\textcolor{comment}{//voltage\ when\ the\ reading\ is\ 0\ PSI}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ PRESSURE\_MAX\_VOLT2\ \ \ \ \ \ \ \ \ \ \ \ \ \ global\_pressure\_max\_volt2\ \ \ \ \ \ \ \ \ }\textcolor{comment}{//voltage\ when\ the\ reading\ is\ maximum\ PSI}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ MAX\_PRESSURE\_VALUE1\ \ \ \ \ \ \ \ \ \ \ \ \ global\_max\_pressure\_value1\ \ \ \ \ \ \ \ }\textcolor{comment}{//the\ value\ of\ the\ maximum\ pressure\ that\ sensor\ can\ read}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ MAX\_PRESSURE\_VALUE2\ \ \ \ \ \ \ \ \ \ \ \ \ global\_max\_pressure\_value2\ \ \ \ \ \ \ \ }\textcolor{comment}{//the\ value\ of\ the\ maximum\ pressure\ that\ sensor\ can\ read}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ TEMPERATURE\_SENSOR\_READING1\ \ \ \ \ global\_temperature\_reading1\ \ \ \ \ \ \ }\textcolor{comment}{//The\ readings\ of\ the\ sensor\ is\ written\ in\ this\ global\ variable.}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ TEMPERATURE\_SENSOR\_READING2\ \ \ \ \ global\_temperature\_reading2\ \ \ \ \ \ \ }\textcolor{comment}{//The\ readings\ of\ the\ sensor\ is\ written\ in\ this\ global\ variable.}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{comment}{//Configurations}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ MAX\_PAGES\ \ \ \ \ 4}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ MAX\_LINES\ \ \ \ \ 7}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00052\ \textcolor{comment}{\ *\ ***********************************************************}}
+\DoxyCodeLine{00053\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Functions\ body}}
+\DoxyCodeLine{00054\ \textcolor{comment}{\ *\ ***********************************************************}}
+\DoxyCodeLine{00055\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00056\ \textcolor{keywordtype}{void}\ page1()\ }
+\DoxyCodeLine{00057\ \{}
+\DoxyCodeLine{00058\ \ \ u8g2.firstPage();}
+\DoxyCodeLine{00059\ \ \ \textcolor{keywordflow}{do}\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{//\ Clear\ the\ page}}
+\DoxyCodeLine{00061\ \ \ \ \ u8g2.setDrawColor(1);\ \textcolor{comment}{//\ Background\ color\ white}}
+\DoxyCodeLine{00062\ \ \ \ \ u8g2.drawBox(0,\ 0,\ 128,\ 10);\ \textcolor{comment}{//\ Clear\ the\ display\ area}}
+\DoxyCodeLine{00063\ \ \ \ \ }
+\DoxyCodeLine{00064\ \ \ \ \ u8g2.setDrawColor(0);\ \textcolor{comment}{//\ Text\ color\ black}}
+\DoxyCodeLine{00065\ \ \ \ \ u8g2.setFont(u8g2\_font\_courR08\_tf);\ \textcolor{comment}{//\ Set\ a\ suitable\ font}}
+\DoxyCodeLine{00066\ \textcolor{comment}{//\ \ \ \ u8g2.setFont(u8g2\_font\_6x10\_tr);\ //\ Set\ a\ suitable\ font}}
+\DoxyCodeLine{00067\ \ \ \ \ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{//\ Display\ the\ menu\ options}}
+\DoxyCodeLine{00069\ \ \ \ \ u8g2.setCursor(0,\ \ 8);\ u8g2.print((current\_line\ ==\ 1)\ ?\ F(\textcolor{stringliteral}{"{}<\ \ \ >\ "{}})\ :\ F(\textcolor{stringliteral}{"{}<\ \ \ \ \ "{}}));\ u8g2.print(F(\textcolor{stringliteral}{"{}Settings\ \ \ \ \ \ >"{}}));}
+\DoxyCodeLine{00070\ \ \ \ \ u8g2.setDrawColor(\ 1);\ \textcolor{comment}{//\ Text\ color\ white}}
+\DoxyCodeLine{00071\ \ \ \ \ u8g2.setCursor(0,\ 18);\ u8g2.print((current\_line\ ==\ 2)\ ?\ F(\textcolor{stringliteral}{"{}>"{}})\ :\ F(\textcolor{stringliteral}{"{}\ "{}}));\ u8g2.print(F(\textcolor{stringliteral}{"{}PrsrMinVolt1:\ "{}}));\ u8g2.print(PRESSURE\_MIN\_VOLT1);}
+\DoxyCodeLine{00072\ \ \ \ \ u8g2.setCursor(0,\ 26);\ u8g2.print((current\_line\ ==\ 3)\ ?\ F(\textcolor{stringliteral}{"{}>"{}})\ :\ F(\textcolor{stringliteral}{"{}\ "{}}));\ u8g2.print(F(\textcolor{stringliteral}{"{}PrsrMaxVolt1:\ "{}}));\ u8g2.print(PRESSURE\_MAX\_VOLT1);}
+\DoxyCodeLine{00073\ \ \ \ \ u8g2.setCursor(0,\ 34);\ u8g2.print((current\_line\ ==\ 4)\ ?\ F(\textcolor{stringliteral}{"{}>"{}})\ :\ F(\textcolor{stringliteral}{"{}\ "{}}));\ u8g2.print(F(\textcolor{stringliteral}{"{}PrsrMinVolt2:\ "{}}));\ u8g2.print(PRESSURE\_MIN\_VOLT2);}
+\DoxyCodeLine{00074\ \ \ \ \ u8g2.setCursor(0,\ 42);\ u8g2.print((current\_line\ ==\ 5)\ ?\ F(\textcolor{stringliteral}{"{}>"{}})\ :\ F(\textcolor{stringliteral}{"{}\ "{}}));\ u8g2.print(F(\textcolor{stringliteral}{"{}PrsrMaxVolt2:\ "{}}));\ u8g2.print(PRESSURE\_MAX\_VOLT2);}
+\DoxyCodeLine{00075\ \ \ \ \ u8g2.setCursor(0,\ 50);\ u8g2.print((current\_line\ ==\ 6)\ ?\ F(\textcolor{stringliteral}{"{}>"{}})\ :\ F(\textcolor{stringliteral}{"{}\ "{}}));\ u8g2.print(F(\textcolor{stringliteral}{"{}MaxPressVal1:\ "{}}));\ u8g2.print(MAX\_PRESSURE\_VALUE1);}
+\DoxyCodeLine{00076\ \ \ \ \ u8g2.setCursor(0,\ 58);\ u8g2.print((current\_line\ ==\ 7)\ ?\ F(\textcolor{stringliteral}{"{}>"{}})\ :\ F(\textcolor{stringliteral}{"{}\ "{}}));\ u8g2.print(F(\textcolor{stringliteral}{"{}MaxPressVal2:\ "{}}));\ u8g2.print(MAX\_PRESSURE\_VALUE2);}
+\DoxyCodeLine{00077\ \ \ \}\ \textcolor{keywordflow}{while}\ (u8g2.nextPage());}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \textcolor{comment}{//\ Handle\ interactions}}
+\DoxyCodeLine{00080\ \ \ \textcolor{keywordflow}{switch}\ (current\_line)}
+\DoxyCodeLine{00081\ \ \ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordflow}{case}\ 1:}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (increaseVal\ ==\ 1)\ \{\ current\_page++;\ increaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (decreaseVal\ ==\ 1)\ \{\ current\_page-\/-\/;\ decreaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordflow}{case}\ 2:}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (increaseVal\ ==\ 1)\ \{\ PRESSURE\_MIN\_VOLT1\ +=\ 0.1;\ increaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (decreaseVal\ ==\ 1)\ \{\ PRESSURE\_MIN\_VOLT1\ -\/=\ 0.1;\ decreaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordflow}{case}\ 3:}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (increaseVal\ ==\ 1)\ \{\ PRESSURE\_MAX\_VOLT1\ +=\ 0.1;\ increaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (decreaseVal\ ==\ 1)\ \{\ PRESSURE\_MAX\_VOLT1\ -\/=\ 0.1;\ decreaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordflow}{case}\ 4:}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (increaseVal\ ==\ 1)\ \{\ PRESSURE\_MIN\_VOLT2\ +=\ 0.1;\ increaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (decreaseVal\ ==\ 1)\ \{\ PRESSURE\_MIN\_VOLT2\ -\/=\ 0.1;\ decreaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordflow}{case}\ 5:}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (increaseVal\ ==\ 1)\ \{\ PRESSURE\_MAX\_VOLT2\ +=\ 0.1;\ increaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (decreaseVal\ ==\ 1)\ \{\ PRESSURE\_MAX\_VOLT2\ -\/=\ 0.1;\ decreaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordflow}{case}\ 6:}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (increaseVal\ ==\ 1)\ \{\ MAX\_PRESSURE\_VALUE1\ +=\ 1;\ increaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (decreaseVal\ ==\ 1)\ \{\ MAX\_PRESSURE\_VALUE1\ -\/=\ 1;\ decreaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordflow}{case}\ 7:}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (increaseVal\ ==\ 1)\ \{\ MAX\_PRESSURE\_VALUE2\ +=\ 1;\ increaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (decreaseVal\ ==\ 1)\ \{\ MAX\_PRESSURE\_VALUE2\ -\/=\ 1;\ decreaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00112\ \ \ \}}
+\DoxyCodeLine{00113\ \}\ \ }
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \textcolor{keywordtype}{void}\ page2()}
+\DoxyCodeLine{00116\ \{}
+\DoxyCodeLine{00117\ \ \ u8g2.firstPage();}
+\DoxyCodeLine{00118\ \ \ \textcolor{keywordflow}{do}\ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{comment}{//\ Clear\ the\ page}}
+\DoxyCodeLine{00120\ \ \ \ \ u8g2.setDrawColor(1);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Background\ color\ white}}
+\DoxyCodeLine{00121\ \ \ \ \ u8g2.drawBox(0,\ 0,\ 128,\ 10);\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Drawing\ white\ Box}}
+\DoxyCodeLine{00122\ \ \ \ \ }
+\DoxyCodeLine{00123\ \ \ \ \ u8g2.setDrawColor(0);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Text\ color\ black}}
+\DoxyCodeLine{00124\ \ \ \ \ u8g2.setFont(u8g2\_font\_courR08\_tf);\ \textcolor{comment}{//\ Set\ a\ suitable\ font}}
+\DoxyCodeLine{00125\ \ \ \ \ }
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{comment}{//\ Display\ the\ menu\ options}}
+\DoxyCodeLine{00127\ \ \ \ \ u8g2.setCursor(0,\ \ 8);\ u8g2.print((current\_line\ ==\ 1)\ ?\ F(\textcolor{stringliteral}{"{}<\ \ \ >\ "{}})\ :\ F(\textcolor{stringliteral}{"{}<\ \ \ \ \ "{}}));\ u8g2.print(F(\textcolor{stringliteral}{"{}Page2\ \ \ \ \ \ \ \ \ >"{}}));}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ u8g2.setDrawColor(\ 1);\ \textcolor{comment}{//\ Text\ color\ white}}
+\DoxyCodeLine{00130\ \ \ \ \ u8g2.setCursor(0,\ 18);\ u8g2.print((current\_line\ ==\ 2)\ ?\ F(\textcolor{stringliteral}{"{}>"{}})\ :\ F(\textcolor{stringliteral}{"{}\ "{}}));\ u8g2.print(F(\textcolor{stringliteral}{"{}Line2:\ "{}}));\ u8g2.print(current\_line);}
+\DoxyCodeLine{00131\ \ \ \ \ u8g2.setCursor(0,\ 26);\ u8g2.print((current\_line\ ==\ 3)\ ?\ F(\textcolor{stringliteral}{"{}>"{}})\ :\ F(\textcolor{stringliteral}{"{}\ "{}}));\ u8g2.print(F(\textcolor{stringliteral}{"{}Line3:\ "{}}));\ u8g2.print(current\_line);}
+\DoxyCodeLine{00132\ \ \ \ \ u8g2.setCursor(0,\ 34);\ u8g2.print((current\_line\ ==\ 4)\ ?\ F(\textcolor{stringliteral}{"{}>"{}})\ :\ F(\textcolor{stringliteral}{"{}\ "{}}));\ u8g2.print(F(\textcolor{stringliteral}{"{}Line4:\ "{}}));\ u8g2.print(current\_line);}
+\DoxyCodeLine{00133\ \ \ \ \ u8g2.setCursor(0,\ 42);\ u8g2.print((current\_line\ ==\ 5)\ ?\ F(\textcolor{stringliteral}{"{}>"{}})\ :\ F(\textcolor{stringliteral}{"{}\ "{}}));\ u8g2.print(F(\textcolor{stringliteral}{"{}Line5:\ "{}}));\ u8g2.print(current\_line);}
+\DoxyCodeLine{00134\ \ \ \ \ u8g2.setCursor(0,\ 50);\ u8g2.print((current\_line\ ==\ 6)\ ?\ F(\textcolor{stringliteral}{"{}>"{}})\ :\ F(\textcolor{stringliteral}{"{}\ "{}}));\ u8g2.print(F(\textcolor{stringliteral}{"{}Line6:\ "{}}));\ u8g2.print(current\_line);}
+\DoxyCodeLine{00135\ \ \ \ \ u8g2.setCursor(0,\ 58);\ u8g2.print((current\_line\ ==\ 7)\ ?\ F(\textcolor{stringliteral}{"{}>"{}})\ :\ F(\textcolor{stringliteral}{"{}\ "{}}));\ u8g2.print(F(\textcolor{stringliteral}{"{}Line7:\ "{}}));\ u8g2.print(current\_line);}
+\DoxyCodeLine{00136\ \ \ \}\ \textcolor{keywordflow}{while}\ (u8g2.nextPage());}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \textcolor{comment}{//\ Handle\ interactions}}
+\DoxyCodeLine{00139\ \ \ \textcolor{keywordflow}{switch}\ (current\_line)}
+\DoxyCodeLine{00140\ \ \ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordflow}{case}\ 1:}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (increaseVal\ ==\ 1)\ \{\ current\_page++;\ increaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (decreaseVal\ ==\ 1)\ \{\ current\_page-\/-\/;\ decreaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordflow}{case}\ 2:}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (increaseVal\ ==\ 1)\ \{\ current\_page++;\ increaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (decreaseVal\ ==\ 1)\ \{\ current\_page-\/-\/;\ decreaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keywordflow}{case}\ 3:}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (increaseVal\ ==\ 1)\ \{\ current\_page++;\ increaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (decreaseVal\ ==\ 1)\ \{\ current\_page-\/-\/;\ decreaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keywordflow}{case}\ 4:}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (increaseVal\ ==\ 1)\ \{\ current\_page++;\ increaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (decreaseVal\ ==\ 1)\ \{\ current\_page-\/-\/;\ decreaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordflow}{case}\ 5:}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (increaseVal\ ==\ 1)\ \{\ current\_page++;\ increaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (decreaseVal\ ==\ 1)\ \{\ current\_page-\/-\/;\ decreaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordflow}{case}\ 6:}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (increaseVal\ ==\ 1)\ \{\ current\_page++;\ increaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (decreaseVal\ ==\ 1)\ \{\ current\_page-\/-\/;\ decreaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keywordflow}{case}\ 7:}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (increaseVal\ ==\ 1)\ \{\ current\_page++;\ increaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (decreaseVal\ ==\ 1)\ \{\ current\_page-\/-\/;\ decreaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00171\ \ \ \}}
+\DoxyCodeLine{00172\ \}}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \textcolor{keywordtype}{void}\ page3()}
+\DoxyCodeLine{00175\ \{}
+\DoxyCodeLine{00176\ \ \ u8g2.firstPage();}
+\DoxyCodeLine{00177\ \ \ \textcolor{keywordflow}{do}\ \{}
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{comment}{//\ Clear\ the\ page}}
+\DoxyCodeLine{00179\ \ \ \ \ u8g2.setDrawColor(1);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Background\ color\ white}}
+\DoxyCodeLine{00180\ \ \ \ \ u8g2.drawBox(0,\ 0,\ 128,\ 10);\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Drawing\ white\ Box}}
+\DoxyCodeLine{00181\ \ \ \ \ }
+\DoxyCodeLine{00182\ \ \ \ \ u8g2.setDrawColor(0);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Text\ color\ black}}
+\DoxyCodeLine{00183\ \ \ \ \ u8g2.setFont(u8g2\_font\_courR08\_tf);\ \textcolor{comment}{//\ Set\ a\ suitable\ font}}
+\DoxyCodeLine{00184\ \ \ \ \ }
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{comment}{//\ Display\ the\ menu\ options}}
+\DoxyCodeLine{00186\ \ \ \ \ u8g2.setCursor(0,\ \ 8);\ u8g2.print((current\_line\ ==\ 1)\ ?\ F(\textcolor{stringliteral}{"{}<\ \ \ >\ "{}})\ :\ F(\textcolor{stringliteral}{"{}<\ \ \ \ \ "{}}));\ u8g2.print(F(\textcolor{stringliteral}{"{}Page3\ \ \ \ \ \ \ \ \ >"{}}));}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \ \ \ \ u8g2.setDrawColor(\ 1);\ \textcolor{comment}{//\ Text\ color\ white}}
+\DoxyCodeLine{00189\ \ \ \ \ u8g2.setCursor(0,\ 18);\ u8g2.print((current\_line\ ==\ 2)\ ?\ F(\textcolor{stringliteral}{"{}>"{}})\ :\ F(\textcolor{stringliteral}{"{}\ "{}}));\ u8g2.print(F(\textcolor{stringliteral}{"{}Line2:\ "{}}));\ u8g2.print(current\_line);}
+\DoxyCodeLine{00190\ \ \ \ \ u8g2.setCursor(0,\ 26);\ u8g2.print((current\_line\ ==\ 3)\ ?\ F(\textcolor{stringliteral}{"{}>"{}})\ :\ F(\textcolor{stringliteral}{"{}\ "{}}));\ u8g2.print(F(\textcolor{stringliteral}{"{}Line3:\ "{}}));\ u8g2.print(current\_line);}
+\DoxyCodeLine{00191\ \ \ \ \ u8g2.setCursor(0,\ 34);\ u8g2.print((current\_line\ ==\ 4)\ ?\ F(\textcolor{stringliteral}{"{}>"{}})\ :\ F(\textcolor{stringliteral}{"{}\ "{}}));\ u8g2.print(F(\textcolor{stringliteral}{"{}Line4:\ "{}}));\ u8g2.print(current\_line);}
+\DoxyCodeLine{00192\ \ \ \ \ u8g2.setCursor(0,\ 42);\ u8g2.print((current\_line\ ==\ 5)\ ?\ F(\textcolor{stringliteral}{"{}>"{}})\ :\ F(\textcolor{stringliteral}{"{}\ "{}}));\ u8g2.print(F(\textcolor{stringliteral}{"{}Line5:\ "{}}));\ u8g2.print(current\_line);}
+\DoxyCodeLine{00193\ \ \ \ \ u8g2.setCursor(0,\ 50);\ u8g2.print((current\_line\ ==\ 6)\ ?\ F(\textcolor{stringliteral}{"{}>"{}})\ :\ F(\textcolor{stringliteral}{"{}\ "{}}));\ u8g2.print(F(\textcolor{stringliteral}{"{}Line6:\ "{}}));\ u8g2.print(current\_line);}
+\DoxyCodeLine{00194\ \ \ \ \ u8g2.setCursor(0,\ 58);\ u8g2.print((current\_line\ ==\ 7)\ ?\ F(\textcolor{stringliteral}{"{}>"{}})\ :\ F(\textcolor{stringliteral}{"{}\ "{}}));\ u8g2.print(F(\textcolor{stringliteral}{"{}Line7:\ "{}}));\ u8g2.print(current\_line);}
+\DoxyCodeLine{00195\ \ \ \}\ \textcolor{keywordflow}{while}\ (u8g2.nextPage());}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \textcolor{comment}{//\ Handle\ interactions}}
+\DoxyCodeLine{00198\ \ \ \textcolor{keywordflow}{switch}\ (current\_line)}
+\DoxyCodeLine{00199\ \ \ \{}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keywordflow}{case}\ 1:}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (increaseVal\ ==\ 1)\ \{\ current\_page++;\ increaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (decreaseVal\ ==\ 1)\ \{\ current\_page-\/-\/;\ decreaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keywordflow}{case}\ 2:}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (increaseVal\ ==\ 1)\ \{\ current\_page++;\ increaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (decreaseVal\ ==\ 1)\ \{\ current\_page-\/-\/;\ decreaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00208\ \ \ \ \ \textcolor{keywordflow}{case}\ 3:}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (increaseVal\ ==\ 1)\ \{\ current\_page++;\ increaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (decreaseVal\ ==\ 1)\ \{\ current\_page-\/-\/;\ decreaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keywordflow}{case}\ 4:}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (increaseVal\ ==\ 1)\ \{\ current\_page++;\ increaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (decreaseVal\ ==\ 1)\ \{\ current\_page-\/-\/;\ decreaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keywordflow}{case}\ 5:}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (increaseVal\ ==\ 1)\ \{\ current\_page++;\ increaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (decreaseVal\ ==\ 1)\ \{\ current\_page-\/-\/;\ decreaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00220\ \ \ \ \ \textcolor{keywordflow}{case}\ 6:}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (increaseVal\ ==\ 1)\ \{\ current\_page++;\ increaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (decreaseVal\ ==\ 1)\ \{\ current\_page-\/-\/;\ decreaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00224\ \ \ \ \ \textcolor{keywordflow}{case}\ 7:}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (increaseVal\ ==\ 1)\ \{\ current\_page++;\ increaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (decreaseVal\ ==\ 1)\ \{\ current\_page-\/-\/;\ decreaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00230\ \ \ \}}
+\DoxyCodeLine{00231\ \}}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00233\ \textcolor{keywordtype}{void}\ mainpage()}
+\DoxyCodeLine{00234\ \{}
+\DoxyCodeLine{00235\ \ \ u8g2.firstPage();}
+\DoxyCodeLine{00236\ \ \ \textcolor{keywordflow}{do}\ \{}
+\DoxyCodeLine{00237\ \ \ \ \ \textcolor{comment}{//\ Clear\ the\ page}}
+\DoxyCodeLine{00238\ \ \ \ \ u8g2.setDrawColor(1);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Background\ color\ white}}
+\DoxyCodeLine{00239\ \ \ \ \ u8g2.drawBox(0,\ 0,\ 128,\ 10);\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Drawing\ white\ Box}}
+\DoxyCodeLine{00240\ \ \ \ \ }
+\DoxyCodeLine{00241\ \ \ \ \ u8g2.setDrawColor(0);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Text\ color\ black}}
+\DoxyCodeLine{00242\ \ \ \ \ u8g2.setFont(u8g2\_font\_courR08\_tf);\ \textcolor{comment}{//\ Set\ a\ suitable\ font}}
+\DoxyCodeLine{00243\ \ \ \ \ }
+\DoxyCodeLine{00244\ \ \ \ \ \textcolor{comment}{//\ Display\ the\ menu\ options}}
+\DoxyCodeLine{00245\ \ \ \ \ u8g2.setCursor(0,\ \ 8);\ u8g2.print((current\_line\ ==\ 1)\ ?\ F(\textcolor{stringliteral}{"{}<\ \ \ >\ "{}})\ :\ F(\textcolor{stringliteral}{"{}<\ \ \ \ \ "{}}));\ u8g2.print(F(\textcolor{stringliteral}{"{}main\ Page\ \ \ \ \ >"{}}));}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00247\ \ \ \ \ u8g2.setDrawColor(\ 1);\ \textcolor{comment}{//\ Text\ color\ white}}
+\DoxyCodeLine{00248\ \ \ \ \ u8g2.setCursor(0,\ 18);\ u8g2.print((current\_line\ ==\ 2)\ ?\ F(\textcolor{stringliteral}{"{}>"{}})\ :\ F(\textcolor{stringliteral}{"{}\ "{}}));\ u8g2.print(F(\textcolor{stringliteral}{"{}Pressure\ 1:\ "{}}));\ \ \ \ u8g2.print(PRESSURE\_SENSOR\_READING1);}
+\DoxyCodeLine{00249\ \ \ \ \ u8g2.setCursor(0,\ 26);\ u8g2.print((current\_line\ ==\ 3)\ ?\ F(\textcolor{stringliteral}{"{}>"{}})\ :\ F(\textcolor{stringliteral}{"{}\ "{}}));\ u8g2.print(F(\textcolor{stringliteral}{"{}Pressure\ 2:\ "{}}));\ \ \ \ u8g2.print(PRESSURE\_SENSOR\_READING2);}
+\DoxyCodeLine{00250\ \ \ \ \ u8g2.setCursor(0,\ 34);\ u8g2.print((current\_line\ ==\ 4)\ ?\ F(\textcolor{stringliteral}{"{}>"{}})\ :\ F(\textcolor{stringliteral}{"{}\ "{}}));\ u8g2.print(F(\textcolor{stringliteral}{"{}Temperature\ 1:\ "{}}));\ u8g2.print(TEMPERATURE\_SENSOR\_READING1);}
+\DoxyCodeLine{00251\ \ \ \ \ u8g2.setCursor(0,\ 42);\ u8g2.print((current\_line\ ==\ 5)\ ?\ F(\textcolor{stringliteral}{"{}>"{}})\ :\ F(\textcolor{stringliteral}{"{}\ "{}}));\ u8g2.print(F(\textcolor{stringliteral}{"{}Temperature\ 2:\ "{}}));\ u8g2.print(TEMPERATURE\_SENSOR\_READING2);}
+\DoxyCodeLine{00252\ \ \ \ \ u8g2.setCursor(0,\ 50);\ u8g2.print((current\_line\ ==\ 6)\ ?\ F(\textcolor{stringliteral}{"{}>"{}})\ :\ F(\textcolor{stringliteral}{"{}\ "{}}));\ u8g2.print(F(\textcolor{stringliteral}{"{}Line6:\ "{}}));\ \ \ \ \ \ \ \ \ u8g2.print(current\_line);}
+\DoxyCodeLine{00253\ \ \ \ \ u8g2.setCursor(0,\ 58);\ u8g2.print((current\_line\ ==\ 7)\ ?\ F(\textcolor{stringliteral}{"{}>"{}})\ :\ F(\textcolor{stringliteral}{"{}\ "{}}));\ u8g2.print(F(\textcolor{stringliteral}{"{}Line7:\ "{}}));\ \ \ \ \ \ \ \ \ u8g2.print(current\_line);}
+\DoxyCodeLine{00254\ \ \ \}\ \textcolor{keywordflow}{while}\ (u8g2.nextPage());}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00256\ \ \ \textcolor{comment}{//\ Handle\ interactions}}
+\DoxyCodeLine{00257\ \ \ \textcolor{keywordflow}{switch}\ (current\_line)}
+\DoxyCodeLine{00258\ \ \ \{}
+\DoxyCodeLine{00259\ \ \ \ \ \textcolor{keywordflow}{case}\ 1:}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (increaseVal\ ==\ 1)\ \{\ current\_page++;\ increaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (decreaseVal\ ==\ 1)\ \{\ current\_page-\/-\/;\ decreaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00263\ \ \ \ \ \textcolor{keywordflow}{case}\ 2:}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (increaseVal\ ==\ 1)\ \{\ current\_page++;\ increaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (decreaseVal\ ==\ 1)\ \{\ current\_page-\/-\/;\ decreaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00267\ \ \ \ \ \textcolor{keywordflow}{case}\ 3:}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (increaseVal\ ==\ 1)\ \{\ current\_page++;\ increaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (decreaseVal\ ==\ 1)\ \{\ current\_page-\/-\/;\ decreaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00271\ \ \ \ \ \textcolor{keywordflow}{case}\ 4:}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (increaseVal\ ==\ 1)\ \{\ current\_page++;\ increaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (decreaseVal\ ==\ 1)\ \{\ current\_page-\/-\/;\ decreaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00275\ \ \ \ \ \textcolor{keywordflow}{case}\ 5:}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (increaseVal\ ==\ 1)\ \{\ current\_page++;\ increaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (decreaseVal\ ==\ 1)\ \{\ current\_page-\/-\/;\ decreaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00279\ \ \ \ \ \textcolor{keywordflow}{case}\ 6:}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (increaseVal\ ==\ 1)\ \{\ current\_page++;\ increaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (decreaseVal\ ==\ 1)\ \{\ current\_page-\/-\/;\ decreaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00283\ \ \ \ \ \textcolor{keywordflow}{case}\ 7:}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (increaseVal\ ==\ 1)\ \{\ current\_page++;\ increaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (decreaseVal\ ==\ 1)\ \{\ current\_page-\/-\/;\ decreaseVal\ =\ 0;\ \}}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00287\ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00289\ \ \ \}}
+\DoxyCodeLine{00290\ \}}
+\DoxyCodeLine{00291\ }
+\DoxyCodeLine{00292\ \textcolor{comment}{//Task\ of\ Loading\ Pages\ on\ OLED.}}
+\DoxyCodeLine{00293\ \textcolor{keywordtype}{void}\ loopPages()}
+\DoxyCodeLine{00294\ \{}
+\DoxyCodeLine{00295\ \ \ \textcolor{keywordflow}{switch}\ (pressedButton())}
+\DoxyCodeLine{00296\ \ \ \{}
+\DoxyCodeLine{00297\ \ \ \ \ \textcolor{keywordflow}{case}\ DOWN\_BUTTON\_PIN:\ \ \ \textcolor{keywordflow}{if}\ (button\_last\_state\ ==\ 0)\{\ \ current\_line\ =\ (current\_line\ +\ 1\ >\ MAX\_LINES)\ ?\ 1\ :\ current\_line\ +\ 1;\ button\_last\_state\ =\ 1;\ \ \}\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00298\ \ \ \ \ \textcolor{keywordflow}{case}\ UP\_BUTTON\_PIN:\ \ \ \ \ \textcolor{keywordflow}{if}\ (button\_last\_state\ ==\ 0)\{\ \ current\_line\ =\ (current\_line\ -\/\ 1\ <\ 1)\ ?\ MAX\_LINES\ :\ current\_line\ -\/\ 1;\ button\_last\_state\ =\ 1;\ \ \}\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00299\ \ \ \ \ \textcolor{keywordflow}{case}\ RIGHT\_BUTTON\_PIN:\ \ \textcolor{keywordflow}{if}\ (button\_last\_state\ ==\ 0)\{\ \ increaseVal\ \ =\ 1;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ button\_last\_state\ =\ 1;\ \ \}\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00300\ \ \ \ \ \textcolor{keywordflow}{case}\ LEFT\_BUTTON\_PIN:\ \ \ \textcolor{keywordflow}{if}\ (button\_last\_state\ ==\ 0)\{\ \ decreaseVal\ \ =\ 1;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ button\_last\_state\ =\ 1;\ \ \}\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00301\ \ \ \ \ \textcolor{keywordflow}{default}:\ \ button\_last\_state\ =\ 0;}
+\DoxyCodeLine{00302\ \ \ \}}
+\DoxyCodeLine{00303\ }
+\DoxyCodeLine{00304\ \ \ \textcolor{keywordflow}{switch}\ (current\_page)}
+\DoxyCodeLine{00305\ \ \ \{}
+\DoxyCodeLine{00306\ \ \ \ \ \textcolor{keywordflow}{case}\ 1:\ page1();\ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00307\ \ \ \ \ \textcolor{keywordflow}{case}\ 2:\ page2();\ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00308\ \ \ \ \ \textcolor{keywordflow}{case}\ 3:\ page3();\ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00309\ \ \ \ \ \textcolor{keywordflow}{case}\ 4:\ mainpage();\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00310\ \ \ \ \ \textcolor{keywordflow}{default}:\ mainpage();}
+\DoxyCodeLine{00311\ \ \ \}}
+\DoxyCodeLine{00312\ }
+\DoxyCodeLine{00313\ \ \ \textcolor{keywordflow}{if}(current\_page\ <\ 1)}
+\DoxyCodeLine{00314\ \ \ \{}
+\DoxyCodeLine{00315\ \ \ \ \ current\_page\ =\ MAX\_PAGES;}
+\DoxyCodeLine{00316\ \ \ \}}
+\DoxyCodeLine{00317\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (current\_page\ >\ MAX\_PAGES)}
+\DoxyCodeLine{00318\ \ \ \{}
+\DoxyCodeLine{00319\ \ \ \ \ current\_page\ =\ 1;}
+\DoxyCodeLine{00320\ \ \ \}}
+\DoxyCodeLine{00321\ \}}
+\DoxyCodeLine{00322\ }
+\DoxyCodeLine{00323\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//PAGES\_H}}
+
+\end{DoxyCode}

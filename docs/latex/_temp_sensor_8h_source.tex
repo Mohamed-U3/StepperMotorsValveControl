@@ -1,0 +1,109 @@
+\doxysection{Temp\+Sensor.\+h}
+\hypertarget{_temp_sensor_8h_source}{}\label{_temp_sensor_8h_source}\index{main/TempSensor.h@{main/TempSensor.h}}
+\mbox{\hyperlink{_temp_sensor_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#ifndef\ TEMPSENSOR\_H}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ TEMPSENSOR\_H}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ ***********************************************************}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ Includes}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ ***********************************************************}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_e_e_p_r_o_m_library_8h}{EEPROMLibrary.h}}"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_config_8h}{Config.h}}"{}}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_global_8h}{Global.h}}"{}}}
+\DoxyCodeLine{00020\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ *\ ***********************************************************}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ Defines}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ *\ ***********************************************************}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ Thermister\_1\_pin\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TEMP1\_PIN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//Pin\ of\ NTC\ 1\ (TEMP1\_PIN\ what\ is\ in\ "{}Config.h"{}\ configuration\ file)}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ Thermister\_2\_pin\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TEMP2\_PIN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//Pin\ of\ NTC\ 2\ (TEMP1\_PIN\ what\ is\ in\ "{}Config.h"{}\ configuration\ file)}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ TEMPERATURE\_SENSOR\_READING1\ \ \ \ \ global\_temperature\_reading1\ \ \ \ \ }\textcolor{comment}{//The\ readings\ of\ the\ sensor\ is\ written\ in\ this\ global\ variable.}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ TEMPERATURE\_SENSOR\_READING2\ \ \ \ \ global\_temperature\_reading2\ \ \ \ \ }\textcolor{comment}{//The\ readings\ of\ the\ sensor\ is\ written\ in\ this\ global\ variable.}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ *\ ***********************************************************}}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ Functions\ body}}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ *\ ***********************************************************}}
+\DoxyCodeLine{00034\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00035\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_n_t_c_thermistor}{NTCThermistor}}}
+\DoxyCodeLine{00036\ \{}
+\DoxyCodeLine{00037\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{//\ Pin\ where\ the\ thermistor\ is\ connected}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{int}\ \_pin;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//\ Thermistor\ characteristics}}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ NOMINAL\_RESISTANCE\ =\ 10000.0;\ \ \textcolor{comment}{//\ 10k\ ohm\ at\ 25°C}}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ NOMINAL\_TEMPERATURE\ =\ 25.0;\ \ \ \ \textcolor{comment}{//\ Reference\ temperature}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{//\ Steinhart-\/Hart\ coefficients\ (typical\ for\ 10k\ NTC)}}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ BETA\_COEFFICIENT\ =\ 3950.0;}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{comment}{//\ Voltage\ divider\ fixed\ resistor\ value}}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ SERIES\_RESISTOR\ =\ 10000.0;\ \ \textcolor{comment}{//\ 10k\ ohm\ series\ resistor}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{//\ Constructor}}
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{class_n_t_c_thermistor}{NTCThermistor}}(\textcolor{keywordtype}{int}\ pin)\ :\ \_pin(pin)}
+\DoxyCodeLine{00054\ \ \ \ \ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ the\ analog\ pin\ to\ input\ mode}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ pinMode(\_pin,\ INPUT);}
+\DoxyCodeLine{00057\ \ \ \ \ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{comment}{//\ Read\ raw\ analog\ value}}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{int}\ readRawValue()}
+\DoxyCodeLine{00061\ \ \ \ \ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ analogRead(\_pin);}
+\DoxyCodeLine{00063\ \ \ \ \ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{comment}{//\ Convert\ analog\ reading\ to\ voltage}}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{float}\ readVoltage()}
+\DoxyCodeLine{00067\ \ \ \ \ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ readRawValue()\ *\ (5.0\ /\ 1023.0);}
+\DoxyCodeLine{00069\ \ \ \ \ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{comment}{//\ Calculate\ resistance\ of\ the\ thermistor}}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{float}\ calculateResistance()}
+\DoxyCodeLine{00073\ \ \ \ \ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ voltage\ =\ readVoltage();}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ resistance\ =\ SERIES\_RESISTOR\ /\ ((5.0\ /\ voltage)\ -\/\ 1.0);}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ resistance;}
+\DoxyCodeLine{00077\ \ \ \ \ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{comment}{//\ Convert\ temperature\ using\ Steinhart-\/Hart\ equation}}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{float}\ getTemperatureCelsius()}
+\DoxyCodeLine{00081\ \ \ \ \ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ resistance\ =\ calculateResistance();}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \textcolor{comment}{//\ Steinhart-\/Hart\ equation}}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ steinhart;}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ steinhart\ =\ log(resistance\ /\ NOMINAL\_RESISTANCE)\ /\ BETA\_COEFFICIENT;\ \ \ \ \ \textcolor{comment}{//\ 1/B\ *\ ln(R/Ro)}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ steinhart\ +=\ 1.0\ /\ (NOMINAL\_TEMPERATURE\ +\ 273.15);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ +\ (1/To)}}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ steinhart\ =\ 1.0\ /\ steinhart;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Invert}}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ steinhart\ -\/=\ 273.15;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Convert\ to\ Celsius}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ steinhart;}
+\DoxyCodeLine{00092\ \ \ \ \ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{comment}{//\ Convert\ to\ Fahrenheit}}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{float}\ getTemperatureFahrenheit()}
+\DoxyCodeLine{00096\ \ \ \ \ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (getTemperatureCelsius()\ *\ 9.0\ /\ 5.0)\ +\ 32.0;}
+\DoxyCodeLine{00098\ \ \ \ \ \}}
+\DoxyCodeLine{00099\ \};}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \mbox{\hyperlink{class_n_t_c_thermistor}{NTCThermistor}}\ NTC1(Thermister\_1\_pin);}
+\DoxyCodeLine{00102\ \mbox{\hyperlink{class_n_t_c_thermistor}{NTCThermistor}}\ NTC2(Thermister\_2\_pin);}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \textcolor{keywordtype}{void}\ NTC\_loop()}
+\DoxyCodeLine{00105\ \{}
+\DoxyCodeLine{00106\ \ \ TEMPERATURE\_SENSOR\_READING1\ =\ NTC1.getTemperatureCelsius();}
+\DoxyCodeLine{00107\ \ \ TEMPERATURE\_SENSOR\_READING2\ =\ NTC2.getTemperatureCelsius();}
+\DoxyCodeLine{00108\ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//TEMPSENSOR\_H}}
+
+\end{DoxyCode}

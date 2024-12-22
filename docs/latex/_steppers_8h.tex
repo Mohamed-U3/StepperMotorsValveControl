@@ -1,0 +1,58 @@
+\doxysection{main/\+Steppers.h File Reference}
+\hypertarget{_steppers_8h}{}\label{_steppers_8h}\index{main/Steppers.h@{main/Steppers.h}}
+
+
+\+: Functionality and code of the stepper motors.  
+
+
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+{\ttfamily \#include "{}Config.\+h"{}}\newline
+{\ttfamily \#include "{}A4988.\+h"{}}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_steppers_8h_aafe919574797cf4d3a1e88d993918140}\label{_steppers_8h_aafe919574797cf4d3a1e88d993918140} 
+\#define {\bfseries MOTOR\+\_\+\+STEPS}~32650
+\item 
+\Hypertarget{_steppers_8h_a4e26e2cffb6043421a57ed275829c11f}\label{_steppers_8h_a4e26e2cffb6043421a57ed275829c11f} 
+\#define {\bfseries RPM}~25
+\item 
+\Hypertarget{_steppers_8h_a74286b67f4c4527e7c78df05e035bd80}\label{_steppers_8h_a74286b67f4c4527e7c78df05e035bd80} 
+\#define {\bfseries MS1}~10
+\item 
+\Hypertarget{_steppers_8h_a8e032e9eb96de1f5dbd1b38889978da9}\label{_steppers_8h_a8e032e9eb96de1f5dbd1b38889978da9} 
+\#define {\bfseries MS2}~11
+\item 
+\Hypertarget{_steppers_8h_ac67befe4cbf68c79d3b839f9714e863f}\label{_steppers_8h_ac67befe4cbf68c79d3b839f9714e863f} 
+\#define {\bfseries MS3}~12
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_steppers_8h_a3a7a48be9e0aad77880b88b27daa7f25}\label{_steppers_8h_a3a7a48be9e0aad77880b88b27daa7f25} 
+A4988 {\bfseries stepper1} (MOTOR\+\_\+\+STEPS, STEPPER1\+\_\+\+DIR\+\_\+\+PIN, STEPPER1\+\_\+\+STEP\+\_\+\+PIN, MS1, MS2, MS3)
+\item 
+\Hypertarget{_steppers_8h_a502c07da1b7de5efc301ba4fb9db4f14}\label{_steppers_8h_a502c07da1b7de5efc301ba4fb9db4f14} 
+A4988 {\bfseries stepper2} (MOTOR\+\_\+\+STEPS, STEPPER2\+\_\+\+DIR\+\_\+\+PIN, STEPPER2\+\_\+\+STEP\+\_\+\+PIN, MS1, MS2, MS3)
+\item 
+\Hypertarget{_steppers_8h_af62699bb0a83cd08787927b8a6240656}\label{_steppers_8h_af62699bb0a83cd08787927b8a6240656} 
+void {\bfseries setup\+Stepper} ()
+\item 
+\Hypertarget{_steppers_8h_afaff4f3591c5ff81eef758e3bf3a5cde}\label{_steppers_8h_afaff4f3591c5ff81eef758e3bf3a5cde} 
+void {\bfseries loop\+Stepper} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\+: Functionality and code of the stepper motors. 
+
+\DoxyHorRuler{0}
+
+
+\begin{DoxyAuthor}{Author}
+\+: Eng. Mohamed Yousry 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+\+: 22/12/2024 \DoxyHorRuler{0}
+ 
+\end{DoxyDate}

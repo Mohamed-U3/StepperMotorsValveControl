@@ -1,0 +1,56 @@
+\doxysection{main/\+EEPROMLibrary.h File Reference}
+\hypertarget{_e_e_p_r_o_m_library_8h}{}\label{_e_e_p_r_o_m_library_8h}\index{main/EEPROMLibrary.h@{main/EEPROMLibrary.h}}
+
+
+\+: file contain functions and definitions related to eeprom  
+
+
+{\ttfamily \#include $<$EEPROM.\+h$>$}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_e_e_p_r_o_m_library_8h_a8cd3e7f2768849716e39e6bfb6711dca}\label{_e_e_p_r_o_m_library_8h_a8cd3e7f2768849716e39e6bfb6711dca} 
+\#define {\bfseries float\+\_\+\+Set\+Point\+\_\+\+ADDRESS}~0
+\item 
+\Hypertarget{_e_e_p_r_o_m_library_8h_ad3ff35515f4c9b710de3a7514b0216a3}\label{_e_e_p_r_o_m_library_8h_ad3ff35515f4c9b710de3a7514b0216a3} 
+\#define {\bfseries float\+\_\+\+Set\+Point\+Diff\+\_\+\+ADDRESS}~(float\+\_\+\+Set\+Point\+\_\+\+ADDRESS                     + sizeof(float))
+\item 
+\Hypertarget{_e_e_p_r_o_m_library_8h_a328deec070c1200760dff7c4e68f4e32}\label{_e_e_p_r_o_m_library_8h_a328deec070c1200760dff7c4e68f4e32} 
+\#define {\bfseries signed\+\_\+char\+\_\+sensor\+Offset1\+\_\+\+ADDRESS}~(float\+\_\+\+Set\+Point\+Diff\+\_\+\+ADDRESS                 + sizeof(float))
+\item 
+\Hypertarget{_e_e_p_r_o_m_library_8h_a787fdf403259e7e60b188de3172e04a8}\label{_e_e_p_r_o_m_library_8h_a787fdf403259e7e60b188de3172e04a8} 
+\#define {\bfseries signed\+\_\+char\+\_\+sensor\+Offset2\+\_\+\+ADDRESS}~(signed\+\_\+char\+\_\+sensor\+Offset1\+\_\+\+ADDRESS          + sizeof(signed char))
+\item 
+\Hypertarget{_e_e_p_r_o_m_library_8h_aa72adc836f5b56d6bc2e8e3586fb264c}\label{_e_e_p_r_o_m_library_8h_aa72adc836f5b56d6bc2e8e3586fb264c} 
+\#define {\bfseries unsigned\+\_\+long\+\_\+\+Com\+\_\+1\+\_\+\+Operation\+Delay\+\_\+\+ADDRESS}~(signed\+\_\+char\+\_\+sensor\+Offset2\+\_\+\+ADDRESS          + sizeof(signed char))
+\item 
+\Hypertarget{_e_e_p_r_o_m_library_8h_a3aecfcf43f919a769cd515f7593b822d}\label{_e_e_p_r_o_m_library_8h_a3aecfcf43f919a769cd515f7593b822d} 
+\#define {\bfseries unsigned\+\_\+long\+\_\+\+Com\+\_\+2\+\_\+\+Operation\+Delay\+\_\+\+ADDRESS}~(unsigned\+\_\+long\+\_\+\+Com\+\_\+1\+\_\+\+Operation\+Delay\+\_\+\+ADDRESS + sizeof(unsigned long))
+\item 
+\Hypertarget{_e_e_p_r_o_m_library_8h_acf96c7e61e19f841e2016d6eabf150a6}\label{_e_e_p_r_o_m_library_8h_acf96c7e61e19f841e2016d6eabf150a6} 
+\#define {\bfseries First\+Time\+\_\+\+ADDRESS}~(unsigned\+\_\+long\+\_\+\+Com\+\_\+2\+\_\+\+Operation\+Delay\+\_\+\+ADDRESS + sizeof(unsigned long))
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_e_e_p_r_o_m_library_8h_a4682224d79c1d4a2f6eafa70f61ef7fd}\label{_e_e_p_r_o_m_library_8h_a4682224d79c1d4a2f6eafa70f61ef7fd} 
+void {\bfseries write\+String\+To\+EEPROM} (int address, const String \&data)
+\item 
+\Hypertarget{_e_e_p_r_o_m_library_8h_a12747ab21ae7f5f9edd19a14d0f48c3d}\label{_e_e_p_r_o_m_library_8h_a12747ab21ae7f5f9edd19a14d0f48c3d} 
+String {\bfseries read\+String\+From\+EEPROM} (int address)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\+: file contain functions and definitions related to eeprom 
+
+\DoxyHorRuler{0}
+
+
+\begin{DoxyAuthor}{Author}
+\+: Eng. Mohamed Yousry 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+\+: 20/02/2024 \DoxyHorRuler{0}
+ 
+\end{DoxyDate}

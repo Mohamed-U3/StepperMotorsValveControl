@@ -1,0 +1,53 @@
+\doxysection{Oled.\+h}
+\hypertarget{_oled_8h_source}{}\label{_oled_8h_source}\index{main/Oled.h@{main/Oled.h}}
+\mbox{\hyperlink{_oled_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#ifndef\ OLED\_H}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ OLED\_H}}
+\DoxyCodeLine{00011\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ ***********************************************************}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ Includes}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ ***********************************************************}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <U8g2lib.h>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <Wire.h>}}
+\DoxyCodeLine{00018\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ *\ ***********************************************************}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ Objects}}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ *\ ***********************************************************}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00023\ U8G2\_SSD1306\_128X64\_NONAME\_1\_HW\_I2C\ u8g2(U8G2\_R0,\ \textcolor{comment}{/*\ reset=*/}\ U8X8\_PIN\_NONE);}
+\DoxyCodeLine{00024\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ *\ ***********************************************************}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Functions\ body}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ *\ ***********************************************************}}
+\DoxyCodeLine{00028\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00029\ \textcolor{keywordtype}{void}\ setupOled()}
+\DoxyCodeLine{00030\ \{}
+\DoxyCodeLine{00031\ \ \ u8g2.begin();}
+\DoxyCodeLine{00032\ \}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keywordtype}{void}\ loopOled()}
+\DoxyCodeLine{00035\ \{\ \ }
+\DoxyCodeLine{00036\ \ \ u8g2.firstPage();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Start\ the\ first\ page}}
+\DoxyCodeLine{00037\ \ \ \textcolor{keywordflow}{do}\{}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{//\ Draw\ text\ on\ the\ display}}
+\DoxyCodeLine{00039\ \ \ \ \ u8g2.setDrawColor(1);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ drawing\ color\ to\ black}}
+\DoxyCodeLine{00040\ \ \ \ \ u8g2.drawBox(0,\ 0,\ 128,\ 16);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Fill\ the\ entire\ display\ with\ a\ black\ background}}
+\DoxyCodeLine{00041\ \ \ \ \ u8g2.setDrawColor(0);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ drawing\ color\ to\ white}}
+\DoxyCodeLine{00042\ \ \ \ \ u8g2.setFont(u8g2\_font\_courB10\_tr);\ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ a\ built-\/in\ font}}
+\DoxyCodeLine{00043\ \ \ \ \ u8g2.drawStr(0,\ 12,\ \textcolor{stringliteral}{"{}ColorAidSystem!"{}});\ \ \ \textcolor{comment}{//\ Draw\ a\ string\ at\ x=0,\ y=10}}
+\DoxyCodeLine{00044\ \ \ \ \ }
+\DoxyCodeLine{00045\ \ \ \ \ u8g2.setDrawColor(1);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ drawing\ color\ to\ black}}
+\DoxyCodeLine{00046\ \ \ \ \ u8g2.setFont(u8g2\_font\_courB14\_tr);\ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ a\ built-\/in\ font}}
+\DoxyCodeLine{00047\ \ \ \ \ u8g2.drawStr(25,\ 40,\ \textcolor{stringliteral}{"{}templete\ 1"{}});\ \textcolor{comment}{//\ Another\ string\ at\ x=25,\ y=40}}
+\DoxyCodeLine{00048\ \ \ \ \ }
+\DoxyCodeLine{00049\ \ \ \ \ u8g2.setFont(u8g2\_font\_courB08\_tr);\ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ a\ built-\/in\ font}}
+\DoxyCodeLine{00050\ \ \ \ \ u8g2.drawStr(0,\ 60,\ \textcolor{stringliteral}{"{}Volume:\ "{}});\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Another\ string\ at\ x=0,\ y=60}}
+\DoxyCodeLine{00051\ \ \ \}\textcolor{keywordflow}{while}\ (u8g2.nextPage());\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Render\ the\ page\ and\ prepare\ for\ the\ next\ one}}
+\DoxyCodeLine{00052\ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//OLED\_H}}
+
+\end{DoxyCode}

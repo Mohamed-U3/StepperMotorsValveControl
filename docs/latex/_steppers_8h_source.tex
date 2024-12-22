@@ -1,0 +1,85 @@
+\doxysection{Steppers.\+h}
+\hypertarget{_steppers_8h_source}{}\label{_steppers_8h_source}\index{main/Steppers.h@{main/Steppers.h}}
+\mbox{\hyperlink{_steppers_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#ifndef\ STEPPERS\_H}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ STEPPERS\_H}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ ***********************************************************}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ Includes}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ ***********************************************************}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_config_8h}{Config.h}}"{}}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}A4988.h"{}}}
+\DoxyCodeLine{00020\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ *\ ***********************************************************}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ Defines}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ *\ ***********************************************************}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ Motor\ steps\ per\ revolution.\ Most\ steppers\ are\ 200\ steps\ or\ 1.8\ degrees/step}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ MOTOR\_STEPS\ 32650}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ RPM\ 25}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ MS1\ 10}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ MS2\ 11}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ MS3\ 12}}
+\DoxyCodeLine{00031\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ *\ ***********************************************************}}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ Objects}}
+\DoxyCodeLine{00034\ \textcolor{comment}{\ *\ ***********************************************************}}
+\DoxyCodeLine{00035\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00036\ A4988\ stepper1(MOTOR\_STEPS,\ STEPPER1\_DIR\_PIN,\ STEPPER1\_STEP\_PIN,\ MS1,\ MS2,\ MS3);}
+\DoxyCodeLine{00037\ A4988\ stepper2(MOTOR\_STEPS,\ STEPPER2\_DIR\_PIN,\ STEPPER2\_STEP\_PIN,\ MS1,\ MS2,\ MS3);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00040\ \textcolor{comment}{\ *\ ***********************************************************}}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ Functions\ body}}
+\DoxyCodeLine{00042\ \textcolor{comment}{\ *\ ***********************************************************}}
+\DoxyCodeLine{00043\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00044\ \textcolor{keywordtype}{void}\ setupStepper()}
+\DoxyCodeLine{00045\ \{}
+\DoxyCodeLine{00046\ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00047\ \textcolor{comment}{\ \ \ \ \ Set\ target\ motor\ RPM.}}
+\DoxyCodeLine{00048\ \textcolor{comment}{\ \ */}}
+\DoxyCodeLine{00049\ \ \ stepper1.begin(RPM);}
+\DoxyCodeLine{00050\ \ \ stepper2.begin(RPM);}
+\DoxyCodeLine{00051\ \ \ \textcolor{comment}{//\ if\ using\ enable/disable\ on\ ENABLE\ pin\ (active\ LOW)\ instead\ of\ SLEEP\ uncomment\ next\ line}}
+\DoxyCodeLine{00052\ \ \ \textcolor{comment}{//\ stepper.setEnableActiveState(LOW);}}
+\DoxyCodeLine{00053\ \ \ stepper1.enable();}
+\DoxyCodeLine{00054\ \ \ stepper2.enable();}
+\DoxyCodeLine{00055\ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00056\ \textcolor{comment}{\ \ \ \ Microstepping\ mode:\ 1,\ 2,\ 4,\ 8,\ 16\ or\ 32\ (where\ supported\ by\ driver)}}
+\DoxyCodeLine{00057\ \textcolor{comment}{\ \ \ \ Mode\ 1\ is\ full\ speed.}}
+\DoxyCodeLine{00058\ \textcolor{comment}{\ \ \ \ Mode\ 32\ is\ 32\ microsteps\ per\ step.}}
+\DoxyCodeLine{00059\ \textcolor{comment}{\ \ \ \ The\ motor\ should\ rotate\ just\ as\ fast\ (at\ the\ set\ RPM),}}
+\DoxyCodeLine{00060\ \textcolor{comment}{\ \ \ \ but\ movement\ precision\ is\ increased,\ which\ may\ become\ visually\ apparent\ at\ lower\ RPMs.}}
+\DoxyCodeLine{00061\ \textcolor{comment}{\ \ */}}
+\DoxyCodeLine{00062\ \ \ stepper1.setMicrostep(32);\ \ \ \textcolor{comment}{//\ Set\ microstep\ mode\ to\ 1:8}}
+\DoxyCodeLine{00063\ \ \ stepper2.setMicrostep(32);\ \ \ \textcolor{comment}{//\ Set\ microstep\ mode\ to\ 1:8}}
+\DoxyCodeLine{00064\ \ \ \textcolor{comment}{//\ set\ current\ level\ (for\ DRV8880\ only).}}
+\DoxyCodeLine{00065\ \ \ \textcolor{comment}{//\ Valid\ percent\ values\ are\ 25,\ 50,\ 75\ or\ 100.}}
+\DoxyCodeLine{00066\ \ \ \textcolor{comment}{//\ stepper.setCurrent(100);}}
+\DoxyCodeLine{00067\ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keywordtype}{void}\ loopStepper()}
+\DoxyCodeLine{00070\ \{}
+\DoxyCodeLine{00071\ \ \ \textcolor{comment}{//\ In\ 1:8\ microstepping\ mode,\ one\ revolution\ takes\ 8\ times\ as\ many\ microsteps}}
+\DoxyCodeLine{00072\ \ \ \textcolor{comment}{//\ \ \ \ stepper.move(32\ *\ MOTOR\_STEPS);\ \ \ \ //\ forward\ revolution}}
+\DoxyCodeLine{00073\ \ \ \textcolor{comment}{//\ \ \ \ stepper.move(-\/32\ *\ MOTOR\_STEPS);\ \ \ //\ reverse\ revolution}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \textcolor{comment}{//\ One\ complete\ revolution\ is\ still\ 360°\ regardless\ of\ microstepping\ mode}}
+\DoxyCodeLine{00076\ \ \ \textcolor{comment}{//\ rotate()\ is\ easier\ to\ use\ than\ move()\ when\ no\ need\ to\ land\ on\ precise\ microstep\ position}}
+\DoxyCodeLine{00077\ \ \ stepper1.rotate(1080);}
+\DoxyCodeLine{00078\ \ \ stepper2.rotate(-\/1080);}
+\DoxyCodeLine{00079\ \ \ delay(500);}
+\DoxyCodeLine{00080\ \ \ stepper1.rotate(-\/1080);}
+\DoxyCodeLine{00081\ \ \ stepper2.rotate(1080);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ delay(1000);}
+\DoxyCodeLine{00084\ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//STEPPERS\_H}}
+
+\end{DoxyCode}
