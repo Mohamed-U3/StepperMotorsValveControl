@@ -1,5 +1,7 @@
 # Stepper Motors Valve Control System
 
+[![Documentation](https://img.shields.io/badge/docs-view-green)](https://mohamed-u3.github.io/StepperMotorsValveControl/docs/html/index.html) [![Repository](https://img.shields.io/badge/repo-GitHub-blue?style=flat-square)](https://github.com/Mohamed-U3/StepperMotorsValveControl)
+
 ## Description: 
 
 #### The Arduino code are in **main** folder.
