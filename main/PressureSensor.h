@@ -1,6 +1,13 @@
+/**
+ * ***********************************************************
+ * @file  : PressureSensor.h
+ * @brief : Functionality and code of pressure sensors
+ * @author: Eng. Mohamed Yousry
+ * @date  : 22/12/2024
+ * ***********************************************************
+ */
 #ifndef PRESSURESENSOR_H
 #define PRESSURESENSOR_H
-
 /*
  * ***********************************************************
  *             Includes

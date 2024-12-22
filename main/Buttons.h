@@ -1,6 +1,13 @@
+/**
+ * ***********************************************************
+ * @file  : Buttons.h
+ * @brief : file contain functions related to the buttons
+ * @author: Eng. Mohamed Yousry
+ * @date  : 22/12/2024
+ * ***********************************************************
+ */
 #ifndef BOTTONS_H
 #define BOTTONS_H
-
 /*
  * ***********************************************************
  *             Includes
@@ -26,7 +33,6 @@
  *             Functions body
  * ***********************************************************
  */
-
 void setupbuttons()
 {
   pinMode(DOWN_BUTTON_PIN ,INPUT);

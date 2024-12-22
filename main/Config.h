@@ -1,6 +1,18 @@
+/**
+ * ***********************************************************
+ * @file  : Config.h
+ * @brief : file contain the pins configrations of the project
+ * @author: Eng. Mohamed Yousry
+ * @date  : 22/12/2024
+ * ***********************************************************
+ */
 #ifndef CONFIG_H
 #define CONFIG_H
-
+/*
+* ***********************************************************
+*             Defines
+* ***********************************************************
+*/
 #define TEMP1_PIN           A0
 #define TEMP2_PIN           A1
 #define PRESSURE1_PIN       A2
@@ -15,7 +27,5 @@
 #define LEFT_BUTTON_PIN     7
 #define RIGHT_BUTTON_PIN    8
 #define UP_BUTTON_PIN       9
-
-
 
 #endif  //CONFIG_H

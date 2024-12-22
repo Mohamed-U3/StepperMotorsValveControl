@@ -1,8 +1,24 @@
+/**
+ * ***********************************************************
+ * @file  : EEPROMLibrary.h
+ * @brief : file contain functions and definitions related to eeprom
+ * @author: Eng. Mohamed Yousry
+ * @date  : 20/02/2024
+ * ***********************************************************
+ */
 #ifndef EEPROMLIBRARY_H
 #define EEPROMLIBRARY_H
-
+/*
+ * ***********************************************************
+ *             Includes
+ * ***********************************************************
+ */
 #include <EEPROM.h>
-
+/*
+* ***********************************************************
+              Defines
+* ***********************************************************
+*/
 //addresses for EEPROM
 #define float_SetPoint_ADDRESS                            0
 #define float_SetPointDiff_ADDRESS                        (float_SetPoint_ADDRESS                     + sizeof(float))
@@ -14,6 +30,11 @@
 
 #define FirstTime_ADDRESS                                 (unsigned_long_Com_2_OperationDelay_ADDRESS + sizeof(unsigned long))
 
+/*
+ * ***********************************************************
+               Functions body
+ * ***********************************************************
+*/
 // Function to write a string to EEPROM
 void writeStringToEEPROM(int address, const String& data)
 {

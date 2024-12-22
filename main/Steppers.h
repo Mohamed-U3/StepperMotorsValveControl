@@ -1,27 +1,46 @@
+/**
+ * ***********************************************************
+ * @file  : Steppers.h
+ * @brief : Functionality and code of the stepper motors.
+ * @author: Eng. Mohamed Yousry
+ * @date  : 22/12/2024
+ * ***********************************************************
+ */
 #ifndef STEPPERS_H
 #define STEPPERS_H
 
+/*
+ * ***********************************************************
+ *             Includes
+ * ***********************************************************
+ */
 #include <Arduino.h>
 #include "Config.h"
-
+#include "A4988.h"
+/*
+ * ***********************************************************
+ *             Defines
+ * ***********************************************************
+ */
 // Motor steps per revolution. Most steppers are 200 steps or 1.8 degrees/step
 #define MOTOR_STEPS 32650
 #define RPM 25
-
-/*
-   Choose one of the sections below that match your board
-*/
-
-#include "A4988.h"
 #define MS1 10
 #define MS2 11
 #define MS3 12
+/*
+ * ***********************************************************
+ *             Objects
+ * ***********************************************************
+ */
 A4988 stepper1(MOTOR_STEPS, STEPPER1_DIR_PIN, STEPPER1_STEP_PIN, MS1, MS2, MS3);
 A4988 stepper2(MOTOR_STEPS, STEPPER2_DIR_PIN, STEPPER2_STEP_PIN, MS1, MS2, MS3);
 
-// #include "BasicStepperDriver.h" // generic
-// BasicStepperDriver stepper(MOTOR_STEPS, DIR, STEP);
-
+/*
+ * ***********************************************************
+ *             Functions body
+ * ***********************************************************
+ */
 void setupStepper()
 {
   /*

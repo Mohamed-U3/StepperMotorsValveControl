@@ -1,15 +1,37 @@
+/**
+ * ***********************************************************
+ * @file  : TempSensor.h
+ * @brief : Functionality and code of the Temperature Sensor
+ * @author: Eng. Mohamed Yousry
+ * @date  : 22/12/2024
+ * ***********************************************************
+ */
 #ifndef TEMPSENSOR_H
 #define TEMPSENSOR_H
 
+/*
+ * ***********************************************************
+ *             Includes
+ * ***********************************************************
+ */
 #include "EEPROMLibrary.h"
 #include "Config.h"
 #include "Global.h"
-
+/*
+ * ***********************************************************
+ *             Defines
+ * ***********************************************************
+ */
 #define Thermister_1_pin                TEMP1_PIN                       //Pin of NTC 1 (TEMP1_PIN what is in "Config.h" configuration file)
 #define Thermister_2_pin                TEMP2_PIN                       //Pin of NTC 2 (TEMP1_PIN what is in "Config.h" configuration file)
 #define TEMPERATURE_SENSOR_READING1     global_temperature_reading1     //The readings of the sensor is written in this global variable.
 #define TEMPERATURE_SENSOR_READING2     global_temperature_reading2     //The readings of the sensor is written in this global variable.
 
+/*
+ * ***********************************************************
+ *             Functions body
+ * ***********************************************************
+ */
 class NTCThermistor
 {
   private:
@@ -75,6 +97,7 @@ class NTCThermistor
       return (getTemperatureCelsius() * 9.0 / 5.0) + 32.0;
     }
 };
+
 NTCThermistor NTC1(Thermister_1_pin);
 NTCThermistor NTC2(Thermister_2_pin);
 
